@@ -56,17 +56,37 @@ class DSA:
     @staticmethod
     def second_largest(arr):
         if len(arr) < 2:
-            return None 
+            return None
         
         largest = second = float('-inf')
         
         for num in arr:
             if num > largest:
-                largest = num
+                second = largest
+                largest = num   
             elif num > second and num != largest:
-                second = num
+                second = num      
         return second if second != float('-inf') else None
-                
+    
+    # Left Rotate an Array by 1 Position 
+    @staticmethod
+    def left_rotate_by_one(arr):
+        if len(arr) == 0:
+            return arr 
+        first = arr.pop(0)
+        arr.append(first)
+        return arr 
+    
+    # Right Rotate an Array by 1 position 
+    @staticmethod
+    def right_rotate_by_one(arr):
+        if len(arr) == 0:
+            return arr
+        last = arr.pop()
+        arr.insert(0,last)
+        
+        return arr
+    
 
 # Test the DSA class
 arr = [10, 20, 30, 40, 50]
@@ -93,5 +113,14 @@ DSA.print_array(arr)
 print("\nSum of Elemets in the Array: ", DSA.sum_of_elements(arr))
 
 print("\nSecond largest element is : ", DSA.second_largest(arr))
+
+print("\nBefore left_rotate_by_one : ",arr)
+rotated = DSA.left_rotate_by_one(arr)
+print("After left_rotate_by_one : ",rotated)
+
+print("\nBefore right_rotate_by_one : ",arr)
+rotated = DSA.right_rotate_by_one(arr)
+print("After right_rotate_by_one : ",rotated)
+
 
 
