@@ -45,48 +45,47 @@ class DSA:
             arr[left], arr[right] = arr[right], arr[left]
             left += 1
             right -= 1
+
     @staticmethod
     def sum_of_elements(arr):
-        sum = 0
+        """Return the sum of array elements."""
+        total = 0
         for elem in arr:
-            sum = sum + elem
-        return sum 
-    
-    # Find the Second Largest Elements
+            total += elem
+        return total
+
     @staticmethod
     def second_largest(arr):
+        """Find the second largest element in the array."""
         if len(arr) < 2:
             return None
-        
         largest = second = float('-inf')
-        
         for num in arr:
             if num > largest:
                 second = largest
-                largest = num   
+                largest = num
             elif num > second and num != largest:
-                second = num      
+                second = num
         return second if second != float('-inf') else None
-    
-    # Left Rotate an Array by 1 Position 
+
     @staticmethod
     def left_rotate_by_one(arr):
+        """Left rotate the array by one position."""
         if len(arr) == 0:
-            return arr 
+            return arr
         first = arr.pop(0)
         arr.append(first)
-        return arr 
-    
-    # Right Rotate an Array by 1 position 
+        return arr
+
     @staticmethod
     def right_rotate_by_one(arr):
+        """Right rotate the array by one position."""
         if len(arr) == 0:
             return arr
         last = arr.pop()
-        arr.insert(0,last)
-        
+        arr.insert(0, last)
         return arr
-    
+
 
 # Test the DSA class
 arr = [10, 20, 30, 40, 50]
@@ -105,22 +104,24 @@ print("\nMaximum Element:", DSA.find_max(arr))
 print("Minimum Element:", DSA.find_min(arr))
 
 # Reverse in place and print
-DSA.reverse_in_place(arr)
+arr_copy = arr[:]
+DSA.reverse_in_place(arr_copy)
 print("\nArray After In-place Reversal:")
-DSA.print_array(arr)
+DSA.print_array(arr_copy)
 
-# Sum of elements in the Array 
-print("\nSum of Elemets in the Array: ", DSA.sum_of_elements(arr))
+# Sum of elements in the Array
+print("\nSum of Elements in the Array: ", DSA.sum_of_elements(arr))
 
-print("\nSecond largest element is : ", DSA.second_largest(arr))
+print("\nSecond largest element is: ", DSA.second_largest(arr))
 
-print("\nBefore left_rotate_by_one : ",arr)
-rotated = DSA.left_rotate_by_one(arr)
-print("After left_rotate_by_one : ",rotated)
+# Left rotation
+arr_left = arr[:]
+print("\nBefore left_rotate_by_one:", arr_left)
+rotated_left = DSA.left_rotate_by_one(arr_left)
+print("After left_rotate_by_one:", rotated_left)
 
-print("\nBefore right_rotate_by_one : ",arr)
-rotated = DSA.right_rotate_by_one(arr)
-print("After right_rotate_by_one : ",rotated)
-
-
-
+# Right rotation
+arr_right = arr[:]
+print("\nBefore right_rotate_by_one:", arr_right)
+rotated_right = DSA.right_rotate_by_one(arr_right)
+print("After right_rotate_by_one:", rotated_right)
