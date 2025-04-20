@@ -45,7 +45,28 @@ class DSA:
             arr[left], arr[right] = arr[right], arr[left]
             left += 1
             right -= 1
-
+    @staticmethod
+    def sum_of_elements(arr):
+        sum = 0
+        for elem in arr:
+            sum = sum + elem
+        return sum 
+    
+    # Find the Second Largest Elements
+    @staticmethod
+    def second_largest(arr):
+        if len(arr) < 2:
+            return None 
+        
+        largest = second = float('-inf')
+        
+        for num in arr:
+            if num > largest:
+                largest = num
+            elif num > second and num != largest:
+                second = num
+        return second if second != float('-inf') else None
+                
 
 # Test the DSA class
 arr = [10, 20, 30, 40, 50]
@@ -67,3 +88,10 @@ print("Minimum Element:", DSA.find_min(arr))
 DSA.reverse_in_place(arr)
 print("\nArray After In-place Reversal:")
 DSA.print_array(arr)
+
+# Sum of elements in the Array 
+print("\nSum of Elemets in the Array: ", DSA.sum_of_elements(arr))
+
+print("\nSecond largest element is : ", DSA.second_largest(arr))
+
+

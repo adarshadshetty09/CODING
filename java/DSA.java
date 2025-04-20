@@ -68,6 +68,14 @@ public class DSA {
         }
     }
 
+    public static int sumOfElements(int[] arr){
+        int total = 0;
+        for (int num: arr){
+            total += num;
+        }
+        return total;
+    }
+
     // Main method to test functionality
     public static void main(String[] args) {
         int[] arr = {10, 20, 30, 40, 50};
@@ -95,5 +103,7 @@ public class DSA {
         System.out.println("\nBefore: " + Arrays.toString(arr1));
         reverseInPlace(arr1);
         System.out.println("\nAfter: "+ Arrays.toString(arr1));
+
+        System.out.println("\nSum of the Array Elements is: " + sumOfElements(arr));
     }
 }
