@@ -1,0 +1,69 @@
+class DSA:
+    @staticmethod
+    def print_array(arr):
+        """Print all elements in the array."""
+        for elem in arr:
+            print(elem)
+
+    @staticmethod
+    def reverse_array(arr):
+        """Print array elements in reverse order."""
+        for i in range(len(arr) - 1, -1, -1):
+            print(arr[i])
+
+    @staticmethod
+    def search_element(arr, target):
+        """Search for a target element and return its index, else -1."""
+        for i in range(len(arr)):
+            if arr[i] == target:
+                return i
+        return -1
+
+    @staticmethod
+    def find_max(arr):
+        """Find and return the maximum element in the array."""
+        max_val = arr[0]
+        for num in arr:
+            if num > max_val:
+                max_val = num
+        return max_val
+
+    @staticmethod
+    def find_min(arr):
+        """Find and return the minimum element in the array."""
+        min_val = arr[0]
+        for num in arr:
+            if num < min_val:
+                min_val = num
+        return min_val
+
+    @staticmethod
+    def reverse_in_place(arr):
+        """Reverse the array in place (mutate original array)."""
+        left, right = 0, len(arr) - 1
+        while left < right:
+            arr[left], arr[right] = arr[right], arr[left]
+            left += 1
+            right -= 1
+
+
+# Test the DSA class
+arr = [10, 20, 30, 40, 50]
+
+print("Original Array:")
+DSA.print_array(arr)
+
+print("\nArray in Reverse Order:")
+DSA.reverse_array(arr)
+
+target = 380
+index = DSA.search_element(arr, target)
+print(f"\nSearch for {target}: {'Found at index ' + str(index) if index != -1 else 'Not found'}")
+
+print("\nMaximum Element:", DSA.find_max(arr))
+print("Minimum Element:", DSA.find_min(arr))
+
+# Reverse in place and print
+DSA.reverse_in_place(arr)
+print("\nArray After In-place Reversal:")
+DSA.print_array(arr)
