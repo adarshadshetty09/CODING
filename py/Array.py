@@ -85,13 +85,22 @@ class DSA:
         last = arr.pop()
         arr.insert(0, last)
         return arr
-    
+    # Check if an Array is Sorted in Aescending Order
     @staticmethod
     def is_sorted(arr):
         for i in range(len(arr) - 1):
             if arr[i] > arr[i + 1]:
                 return False
         return True
+    
+    # Check if an Array is Sorted in Descending Order
+    # Write this using recursion 
+    # Count the Number of Even and Odd Elements in an Array
+    # Count positive, negative, or zero?
+    # Count how many numbers are greater than a given number?
+    # Check if an array is strictly increasing or decreasing?
+    # Rotate by K positions?
+    # Remove duplicates?
 
 
 # Test the DSA class
