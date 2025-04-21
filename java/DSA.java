@@ -173,7 +173,7 @@ public class DSA {
         int[] sorted   = {10,20,30,40};
         int[] unsorted = {20,10,30,40};
         System.out.println("\nIs Given Array is Sorted Or Not: " + is_sorted(sorted));
-        System.out.println("\nIs Given Array is Sorted Or Not: "+ is_sorted(unsorted));
+        System.out.println("\nIs Given Array is Sorted Or Not: " + is_sorted(unsorted));
 
     }
 }
