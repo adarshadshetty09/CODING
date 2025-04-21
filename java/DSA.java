@@ -117,6 +117,19 @@ public class DSA {
         arr[arr.length - 1] = first;
     }
 
+    // Check if an Array is Sorted
+    public static boolean  is_sorted(int[] arr){
+        if (arr.length < 2){
+            return true;
+        }
+        for (int i = 0; i < arr.length - 1; i++){
+            if (arr[i] > arr[i + 1]){
+                return false;
+            }
+        }
+        return true;
+    }
+
     // Main method to test
     public static void main(String[] args) {
         int[] arr = {10, 20, 30, 40, 50};
@@ -156,5 +169,11 @@ public class DSA {
         System.out.println("\nBefore Right Rotation: " + Arrays.toString(arr3));
         rightRotateByOne(arr3);
         System.out.println("After Right Rotation:  " + Arrays.toString(arr3));
+
+        int[] sorted   = {10,20,30,40};
+        int[] unsorted = {20,10,30,40};
+        System.out.println("\nIs Given Array is Sorted Or Not: " + is_sorted(sorted));
+        System.out.println("\nIs Given Array is Sorted Or Not: "+ is_sorted(unsorted));
+
     }
 }

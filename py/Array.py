@@ -85,6 +85,13 @@ class DSA:
         last = arr.pop()
         arr.insert(0, last)
         return arr
+    
+    @staticmethod
+    def is_sorted(arr):
+        for i in range(len(arr) - 1):
+            if arr[i] > arr[i + 1]:
+                return False
+        return True
 
 
 # Test the DSA class
@@ -124,4 +131,7 @@ print("After left_rotate_by_one:", rotated_left)
 arr_right = arr[:]
 print("\nBefore right_rotate_by_one:", arr_right)
 rotated_right = DSA.right_rotate_by_one(arr_right)
-print("After right_rotate_by_one:", rotated_right)
+print("\nAfter right_rotate_by_one:", rotated_right)
+
+print("\nIs Given Array is Sorted Or Not: ",DSA.is_sorted([10,20,30,40]))
+print("\nIs Given Array is Sorted Or Not: ",DSA.is_sorted([10,50,30,40]))
