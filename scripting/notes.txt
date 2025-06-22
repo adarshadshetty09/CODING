@@ -1,0 +1,4 @@
+This is your first Python file.
+File handling is powerful !
+I am learning the Python script 
+File Handling is one of the powerfull tool 

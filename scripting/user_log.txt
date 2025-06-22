@@ -1,0 +1,4 @@
+Name: Adarsha | Tech: K8sName: Shetty | Tech: DockerName: Adarsha | Tech: Docker
+Name: Shetty | Tech: K8s
+Name: Adarsha | Tech: Docker
+Name: Adarsha  | Tech: k8s

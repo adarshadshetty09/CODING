@@ -172,3 +172,14 @@ Process monitoring
 Server health checks
 
 
+==================================================================
+
+🐍 Python Scripting – Lesson 5: File Handling
+📂 Common File Modes:
+Mode	Description
+'r'	Read (default)
+'w'	Write (overwrites file)
+'a'	Append (adds to file)
+'x'	Create (fail if exists)
+'b'	Binary mode
+'t'	Text mode (default)

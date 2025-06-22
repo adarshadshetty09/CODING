@@ -172,4 +172,57 @@ elif choice == '4':
 else: 
     print("Invalid choice")
 
+# 🔹 Example 1: Writing to a File
+
+with open("notes.txt","w") as file:
+    file.write("This is your first Python file.\n")
+    file.write("File handling is powerful !\n")
+
+
+# 🔹 Example 3: Appending to a File
+
+with open("notes.txt", "a") as file1:
+    file1.write("I am learning the Python script \n")
+    file1.write("File Handling is one of the powerfull tool \n")
+
+
+
+# 🔹 Example 2: Reading from a File
+
+with open("notes.txt","r") as file:
+    content = file.read()
+    print("File Content: \n", content)
+
+
+# log_user_input.py
+
+hesaru = input("Enter the name: ")
+technology = input("Enter the DevOps Technology: ")
+
+hesaru_1 = input("Enter the name: ")
+technology_1 = input("Enter the DevOps Technology: ")
+
+with open("user_log.txt", "a") as file3:
+    file3.write(f"Name: {hesaru} | Tech: {technology}\n")
+    file3.write(f"Name: {hesaru_1} | Tech: {technology_1}\n")
+
+
+
+
+
+
+
+# log_user_input_loop.py
+
+while True:
+    name = input("Enter the name: ")
+    tech = input("Enter the DevOps Technology: ")
+
+    with open("user_log.txt", "a") as file:
+        file.write(f"Name: {name} | Tech: {tech}\n")
+
+    more = input("Do you want to add another? (yes/no): ")
+    if more.lower() != "yes":
+        print("Exiting and saving all entries...")
+        break
 
