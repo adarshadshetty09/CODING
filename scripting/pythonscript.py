@@ -1,0 +1,175 @@
+print("Hello, Adarsha! Welcome to Python Scritping.")
+
+# hello_variable.py
+
+name = "Adarsha"
+age = 25
+is_devops = True
+height = 5.6
+
+print("Name: ", name)
+print("Age: ", age)
+print("DevOps Engineer ?", is_devops)
+print("Height", height)
+
+
+# user_input.py 
+
+naam = input("Enter your name: ")
+age1 = input("Enter your age: ")
+
+print("Hello", naam + "!")
+print("You are", age1, "years old")
+
+
+# age_check.py
+
+age2 = int(input("Enter your age: "))  # variable age2 string to int 
+
+if age2 >= 18: 
+    print("Your are an adult.")
+else: 
+    print("Your are not an adult yet.")
+
+
+
+# grade_check.py
+
+
+marks = int(input("Enter your marks: "))
+
+if marks >= 90: 
+    print("Grade: A")
+elif marks >= 75: 
+    print("Grade: B")
+elif marks >= 60: 
+    print("Grade: C")
+else: 
+    print("Grade: F")
+
+
+
+# weather.py
+
+temp = float(input("Enter the temperature in degree celsius: "))
+
+if temp > 30:
+    print("It's hot")
+elif 20 <= temp <= 30:
+    print("Nice weather.")
+else: 
+    print("It's cool")
+
+# for_loop_example.py
+
+
+for i in range(1,6):
+    print("Number:", i)
+
+# while_loop_example.py
+
+n = 5
+while n > 0:
+    print("CountDown: ", n)
+    n -= 1
+print("Liftoff")
+
+
+for i in range(1,6):
+    if i == 3:
+        break
+    print("Value:",i)
+
+
+# multiplication_table.py
+
+num = int(input("Enter the number: "))
+for i in range(1,11):
+    print(num ,"*", i ,"=", num*i)
+
+
+# multiplication_table.py (improved)
+
+num = int(input("Enter the number: "))
+for i in range(1,11):
+    print(f"{num} x {i} = {num * i}")
+
+
+# 🐍 Python Scripting – Lesson 4: Functions
+
+
+def function_name():
+    # code block
+    print("This is a function.")
+
+def greet():
+    print("Hello, Adarsha! Welcome Back.")
+
+function_name()
+greet()
+
+
+def greet_user(name): #  Function with parameters
+    print(f"Hello, {name}")
+greet_user("Adarsha")
+
+def add(a, b): # Function with return value
+    return a + b
+result = add(10,20)
+print("Sum is: ", result)
+
+
+# Multiplication Table with Function
+
+def print_table(number):
+    for i in range(1,11):
+        print(f"{number} x {i} = {number * i}")
+
+num = int(input("Enter a number: "))
+print_table(num)
+
+
+
+# calculator.py
+
+def add(a,b):
+    return a + b
+
+def substract(a,b):
+    return a - b
+
+def multiply(a,b):
+    return a * b
+
+def divide(a,b):
+    if a == 0:
+        return "Cannot divide by zero!"
+    return a / b
+
+print("Select Operation: ")
+print("1. Add")
+print("2. Substract")
+print("3. Multiply")
+print("4. Divide")
+
+choice = input("Enter choice (1/2/3/4): ")
+
+# Input two numbers
+
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+# Call appropriate function 
+
+if choice == '1':
+    print("Result: ", add(num1, num2))
+elif choice == '2':
+    print("Result: ", substract(num1, num2))
+elif choice == '3':
+    print("Result: ", multiply(num1, num2))
+elif choice == '4':
+    print("Result: ", divide(num1, num2))
+else: 
+    print("Invalid choice")
+
+
