@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Adarsha",
+        "technology": "Docker"
+    },
+    {
+        "name": "Ravi",
+        "technology": "Kubernetes"
+    }
+]

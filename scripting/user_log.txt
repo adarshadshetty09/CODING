@@ -2,3 +2,8 @@ Name: Adarsha | Tech: K8sName: Shetty | Tech: DockerName: Adarsha | Tech: Docker
 Name: Shetty | Tech: K8s
 Name: Adarsha | Tech: Docker
 Name: Adarsha  | Tech: k8s
+Name: Adarsha | Tech: Docker
+Name: Ashu  | Tech: k8s
+Name: Adarsha | Tech: docker
+Name: adarsha  | Tech: k8s
+Name: shetty | Tech: ansible
