@@ -1,0 +1,77 @@
+[ec2-user@ip-172-31-24-207 yba_installer_full-2024.2.3.2-b6]$ ls
+version_metadata.json  yba-ctl.yml.reference                    yugabundle-2024.2.3.2-b6-centos-x86_64.tar.gz
+yba-ctl                yba_installer-2024.2.3.2-b6-linux-amd64
+[ec2-user@ip-172-31-24-207 yba_installer_full-2024.2.3.2-b6]$ sudo ./yba-ctl install
+INFO[2025-06-25T09:42:15Z] Installing yba-ctl
+INFO[2025-06-25T09:42:15Z] Running preflight check 'install does not exist'
+INFO[2025-06-25T09:42:15Z] Running preflight check 'validate-config'
+INFO[2025-06-25T09:42:15Z] Config at /opt/yba-ctl/yba-ctl.yml was found to be valid.
+INFO[2025-06-25T09:42:15Z] Running preflight check 'user'
+INFO[2025-06-25T09:42:15Z] Found user 'gagana', no need to create a user
+INFO[2025-06-25T09:42:15Z] Running preflight check 'cpu'
+INFO[2025-06-25T09:42:15Z] System meets the requirement of 4 Virtual CPUs!
+INFO[2025-06-25T09:42:15Z] Running preflight check 'memory'
+INFO[2025-06-25T09:42:15Z] System meets the requirement of 8 GB.
+INFO[2025-06-25T09:42:15Z] Running preflight check 'port'
+INFO[2025-06-25T09:42:15Z] Connection to port: 9090 successful.
+INFO[2025-06-25T09:42:15Z] Connection to port: 443 successful.
+INFO[2025-06-25T09:42:15Z] Connection to port: 5432 successful.
+INFO[2025-06-25T09:42:15Z] Running preflight check 'python'
+INFO[2025-06-25T09:42:15Z] System meets Python installation requirements with version Python 3.9.21
+INFO[2025-06-25T09:42:15Z] Running preflight check 'disk-availability'
+INFO[2025-06-25T09:42:15Z] Running preflight check 'license'
+INFO[2025-06-25T09:42:15Z] Running preflight check 'db-config'
+INFO[2025-06-25T09:42:15Z] Running preflight check 'validate-locale-config'
+INFO[2025-06-25T09:42:15Z] Running preflight check 'prometheus'
+INFO[2025-06-25T09:42:15Z] Running preflight check 'replicated-exists'
+INFO[2025-06-25T09:42:15Z] Running preflight check 'systemd_user_supported'
+INFO[2025-06-25T09:42:15Z] Running preflight check 'postgres'
+INFO[2025-06-25T09:42:15Z] Starting Common install
+INFO[2025-06-25T09:42:15Z] Guessing primary IP of host to be 172.31.24.207
+INFO[2025-06-25T09:42:15Z] Generating default password for postgres
+INFO[2025-06-25T09:42:15Z] Extracting yugabundle package.
+INFO[2025-06-25T09:42:30Z] Extracting third-party dependencies.
+INFO[2025-06-25T09:42:33Z] Generating self-signed server certificates
+INFO[2025-06-25T09:42:34Z] About to install component postgres
+INFO[2025-06-25T09:42:34Z] Starting Postgres install
+INFO[2025-06-25T09:42:34Z] Creating file (and directory path): /etc/systemd/system/postgres.service
+INFO[2025-06-25T09:42:34Z] Finished Postgres install
+INFO[2025-06-25T09:42:34Z] Starting Postgres initialize
+INFO[2025-06-25T09:42:38Z] Finishing Postgres initialize
+INFO[2025-06-25T09:42:38Z] Completed installing component postgres
+INFO[2025-06-25T09:42:38Z] About to install component prometheus
+INFO[2025-06-25T09:42:38Z] Starting Prometheus install
+INFO[2025-06-25T09:42:38Z] Creating file (and directory path): /opt/yugabyte/software/2024.2.3.2-b6/prometheus/conf/prometheus.yml
+INFO[2025-06-25T09:42:38Z] Creating file (and directory path): /etc/systemd/system/prometheus.service
+INFO[2025-06-25T09:42:38Z] Creating file (and directory path): /opt/yugabyte/software/2024.2.3.2-b6/prometheus/conf/web.yml
+INFO[2025-06-25T09:42:40Z] Finishing Prometheus install
+INFO[2025-06-25T09:42:40Z] Starting Prometheus initialize
+INFO[2025-06-25T09:42:41Z] Finishing Prometheus initialize
+INFO[2025-06-25T09:42:41Z] Completed installing component prometheus
+INFO[2025-06-25T09:42:41Z] About to install component yb-platform
+INFO[2025-06-25T09:42:41Z] Starting Platform install
+INFO[2025-06-25T09:42:41Z] Creating file (and directory path): /opt/yugabyte/software/2024.2.3.2-b6/yb-platform/conf/yb-platform.conf
+INFO[2025-06-25T09:42:41Z] Creating file (and directory path): /etc/systemd/system/yb-platform.service
+INFO[2025-06-25T09:42:41Z] Extracting devops and yugaware packages.
+INFO[2025-06-25T09:42:54Z] Finishing Platform install
+INFO[2025-06-25T09:42:54Z] Starting Platform initialize
+INFO[2025-06-25T09:42:55Z] Generating concatenated PEM from /opt/yugabyte/data/yba-installer/certs/server-key.pem /opt/yugabyte/data/yba-installer/certs/server-cert.pem
+INFO[2025-06-25T09:42:55Z] Finishing Platform initialize
+INFO[2025-06-25T09:42:55Z] Completed installing component yb-platform
+INFO[2025-06-25T09:42:55Z] Waiting for YBA ready.
+INFO[2025-06-25T09:42:55Z] YBA at https://172.31.24.207:443/api/v1/app_version not ready. Checking again in 10 seconds.
+INFO[2025-06-25T09:43:05Z] YBA at https://172.31.24.207:443/api/v1/app_version not ready. Checking again in 10 seconds.
+INFO[2025-06-25T09:43:15Z] YBA at https://172.31.24.207:443/api/v1/app_version not ready. Checking again in 10 seconds.
+INFO[2025-06-25T09:43:25Z] YBA at https://172.31.24.207:443/api/v1/app_version not ready. Checking again in 10 seconds.
+INFO[2025-06-25T09:43:35Z] YBA at https://172.31.24.207:443/api/v1/app_version not ready. Checking again in 10 seconds.
+INFO[2025-06-25T09:43:45Z] YBA at https://172.31.24.207:443/api/v1/app_version not ready. Checking again in 10 seconds.
+                YBA Url |   Install Root |            yba-ctl config |              yba-ctl Logs |  YBA Installer State |
+  https://172.31.24.207 |  /opt/yugabyte |  /opt/yba-ctl/yba-ctl.yml |  /opt/yba-ctl/yba-ctl.log |            Installed |
+
+Services:
+  Systemd service |        Version |  Port |                                Log Files |                                Binary Directory |  Running Status |   Since |
+         postgres |          14.17 |  5432 |     /opt/yugabyte/data/logs/postgres.log |  /opt/yugabyte/software/2024.2.3.2-b6/pgsql/bin |         Running |  1m 20s |
+       prometheus |          3.2.1 |  9090 |   /opt/yugabyte/data/logs/prometheus.log |                                                 |         Running |  1m 16s |
+      yb-platform |  2024.2.3.2-b6 |   443 |  /opt/yugabyte/data/logs/application.log |                                                 |         Running |   1m 2s |
+INFO[2025-06-25T09:43:56Z] Successfully installed YugabyteDB Anywhere!
+[ec2-user@ip-172-31-24-207 yba_installer_full-2024.2.3.2-b6]$
