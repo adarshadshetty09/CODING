@@ -1,10 +1,10 @@
 # =========================================================
-# NUMBER PROGRAMS - CLEAN & READABLE VERSION
+# NUMBER PROGRAMS - CLEAN & INTERVIEW-READY VERSION
 # =========================================================
 
 
 # =========================================================
-# Count Digits
+# COUNT DIGITS
 # =========================================================
 
 def count_digits_math(n):
@@ -39,7 +39,7 @@ def count_digits_string(n):
 
 
 # =========================================================
-# Reverse Number
+# REVERSE NUMBER
 # =========================================================
 
 def reverse_number_math(n):
@@ -74,7 +74,7 @@ def reverse_number_string(n):
 
 
 # =========================================================
-# Palindrome Number
+# PALINDROME NUMBER
 # =========================================================
 
 def is_palindrome(n):
@@ -94,8 +94,6 @@ def is_palindrome_optimized(n):
     """
     Check palindrome using half-reversal method.
 
-    More optimized for large numbers.
-
     Time Complexity  : O(log n)
     Space Complexity : O(1)
     """
@@ -112,7 +110,7 @@ def is_palindrome_optimized(n):
 
 
 # =========================================================
-# Armstrong Number
+# ARMSTRONG NUMBER
 # =========================================================
 
 def is_armstrong(n):
@@ -142,7 +140,7 @@ def is_armstrong(n):
 
 
 # =========================================================
-# Prime Number
+# PRIME NUMBER
 # =========================================================
 
 def is_prime_basic(n):
@@ -190,7 +188,7 @@ def is_prime_optimized(n):
 
 
 # =========================================================
-# Factors / Divisors of a Number
+# FACTORS / DIVISORS OF A NUMBER
 # =========================================================
 
 def find_factors_basic(n):
@@ -240,10 +238,62 @@ def find_factors_optimized(n):
 
 
 # =========================================================
+# GREATEST COMMON DIVISOR (GCD)
+# =========================================================
+
+def gcd_bruteforce(a, b):
+    """
+    Find GCD using brute-force approach.
+
+    Time Complexity  : O(min(a, b))
+    Space Complexity : O(1)
+    """
+    limit = min(a, b)
+    ans = 1
+
+    for i in range(1, limit + 1):
+
+        if a % i == 0 and b % i == 0:
+            ans = i
+
+    return ans
+
+
+def gcd_optimized(a, b):
+    """
+    Find GCD using Euclidean Algorithm.
+
+    Core Formula:
+    gcd(a, b) = gcd(b, a % b)
+
+    Time Complexity  : O(log(min(a, b)))
+    Space Complexity : O(1)
+    """
+    while b != 0:
+        a, b = b, a % b
+
+    return a
+
+
+def gcd_recursive(a, b):
+    """
+    Recursive implementation of Euclidean Algorithm.
+
+    Time Complexity  : O(log(min(a, b)))
+    Space Complexity : O(log(min(a, b)))
+    """
+    if b == 0:
+        return a
+
+    return gcd_recursive(b, a % b)
+
+
+# =========================================================
 # TEST CASES
 # =========================================================
 
 print("========== COUNT DIGITS ==========")
+
 print(count_digits_math(1231231))
 print(count_digits_math(0))
 print(count_digits_math(-9876))
@@ -258,6 +308,7 @@ print()
 
 
 print("========== REVERSE NUMBER ==========")
+
 print(reverse_number_math(54321))
 print(reverse_number_math(-12345))
 print(reverse_number_math(1000))
@@ -272,6 +323,7 @@ print()
 
 
 print("========== PALINDROME ==========")
+
 print(is_palindrome(121))
 print(is_palindrome(123))
 print(is_palindrome(-121))
@@ -281,6 +333,7 @@ print()
 
 
 print("========== OPTIMIZED PALINDROME ==========")
+
 print(is_palindrome_optimized(121))
 print(is_palindrome_optimized(123))
 
@@ -288,6 +341,7 @@ print()
 
 
 print("========== ARMSTRONG NUMBER ==========")
+
 print(is_armstrong(153))
 print(is_armstrong(123))
 
@@ -295,6 +349,7 @@ print()
 
 
 print("========== PRIME NUMBER ==========")
+
 print(is_prime_basic(7))
 print(is_prime_basic(10))
 
@@ -308,6 +363,7 @@ print()
 
 
 print("========== FACTORS / DIVISORS ==========")
+
 print(find_factors_basic(12))
 print(find_factors_basic(15))
 print(find_factors_basic(14))
@@ -318,6 +374,28 @@ print()
 
 
 print("========== OPTIMIZED FACTORS ==========")
+
 print(find_factors_optimized(14))
 print(find_factors_optimized(17))
 print(find_factors_optimized(36))
+
+print()
+
+
+print("========== GCD - BRUTE FORCE ==========")
+
+print(gcd_bruteforce(12, 18))
+
+print()
+
+
+print("========== GCD - OPTIMIZED ==========")
+
+print(gcd_optimized(48, 18))
+
+print()
+
+
+print("========== GCD - RECURSIVE ==========")
+
+print(gcd_recursive(48, 18))
