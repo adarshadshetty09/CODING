@@ -1,110 +1,92 @@
-def count_digitv0(n):
-    n = abs(n)   # Handles negative numbers
-    
+# ==============================
+# Count Digits
+# ==============================
+
+def count_digits_math(n):
+    """
+    Count digits using mathematical approach.
+    Time  : O(log n)
+    Space : O(1)
+    """
+    n = abs(n)
+
     if n == 0:
         return 1
-    
+
     count = 0
+
     while n:
         n //= 10
         count += 1
-    
+
     return count
 
 
-print(count_digitv0(1231231))
-print(count_digitv0(0))
-print(count_digitv0(-9876))
-
-def count_digitv1(n):
+def count_digits_string(n):
+    """
+    Count digits using string conversion.
+    Time  : O(log n)
+    Space : O(log n)
+    """
     return len(str(abs(n)))
 
 
-print(count_digitv1(1231231))
-print(count_digitv1(0))
-print(count_digitv1(-9876))
+# ==============================
+# Reverse Number
+# ==============================
 
-
-
-def reverse_numberv0(n):
-    n = abs(n)
-    rev = 0
-    
-    while n > 0:
-        digit = n % 10
-        
-        rev = rev * 10 + digit
-        n = n // 10
-    return rev
-
-print(reverse_numberv0(54321))
-print(reverse_numberv0(-12345))
-
-
-def reverse_numberv1(n):
+def reverse_number_math(n):
+    """
+    Reverse a number using mathematical approach.
+    Time  : O(log n)
+    Space : O(1)
+    """
     sign = -1 if n < 0 else 1
     n = abs(n)
 
-    rev = 0
-
-    while n:
-        rev = rev * 10 + (n % 10)
-        n //= 10
-
-    return sign * rev
-
-
-print(reverse_numberv1(54321))
-print(reverse_numberv1(-12345))
-print(reverse_numberv1(1000))
-print(reverse_numberv1(0))
-
-
-# If optimization is not require
-def reverse_number(n):
-    sign = -1 if n < 0 else 1
-    return sign * int(str(abs(n))[::-1])
-
-
-def is_palindromev0(n):
-    original = n 
-    reverse  = 0
-    
-    while n > 0:
-        digit = n % 10
-        
-        reverse = reverse * 10 + digit
-        n = n // 10
-    return original == reverse
-
-print(is_palindromev0(121))
-print(is_palindromev0(123))
-
-
-def is_palindrome(n):
-    if n < 0:
-        return False
-
-    original = n
     reverse = 0
 
     while n:
         reverse = reverse * 10 + (n % 10)
         n //= 10
 
-    return original == reverse
+    return sign * reverse
 
 
-print(is_palindrome(121))
-print(is_palindrome(123))
-print(is_palindrome(-121))
-print(is_palindrome(0))
+def reverse_number_string(n):
+    """
+    Reverse a number using string slicing.
+    Time  : O(log n)
+    Space : O(log n)
+    """
+    sign = -1 if n < 0 else 1
+    return sign * int(str(abs(n))[::-1])
 
 
+# ==============================
+# Palindrome Number
+# ==============================
+
+def is_palindrome(n):
+    """
+    Check palindrome by reversing full number.
+    Time  : O(log n)
+    Space : O(1)
+    """
+    if n < 0:
+        return False
+
+    return n == reverse_number_math(n)
 
 
-# Half Reversed Method
-def is_palindromev2(n):
+def is_palindrome_optimized(n):
+    """
+    Check palindrome using half-reversal method.
+    More optimized for large numbers.
+
+    Time  : O(log n)
+    Space : O(1)
+    """
     if n < 0 or (n % 10 == 0 and n != 0):
         return False
 
@@ -115,3 +97,71 @@ def is_palindromev2(n):
         n //= 10
 
     return n == reverse or n == reverse // 10
+
+
+# ==============================
+# Armstrong Number
+# ==============================
+
+def is_armstrong(n):
+    """
+    Check whether a number is an Armstrong number.
+
+    Example:
+    153 = 1³ + 5³ + 3³
+
+    Time  : O(log n)
+    Space : O(1)
+    """
+    if n < 0:
+        return False
+
+    original = n
+    digits = count_digits_math(n)
+
+    total = 0
+
+    while n:
+        digit = n % 10
+        total += digit ** digits
+        n //= 10
+
+    return total == original
+
+
+# ==============================
+# Test Cases
+# ==============================
+
+print("Count Digits")
+print(count_digits_math(1231231))
+print(count_digits_math(0))
+print(count_digits_math(-9876))
+
+print()
+
+print("Reverse Number")
+print(reverse_number_math(54321))
+print(reverse_number_math(-12345))
+print(reverse_number_math(1000))
+print(reverse_number_math(0))
+
+print()
+
+print("Palindrome")
+print(is_palindrome(121))
+print(is_palindrome(123))
+print(is_palindrome(-121))
+print(is_palindrome(0))
+
+print()
+
+print("Optimized Palindrome")
+print(is_palindrome_optimized(121))
+print(is_palindrome_optimized(123))
+
+print()
+
+print("Armstrong")
+print(is_armstrong(153))
+print(is_armstrong(123))
