@@ -977,6 +977,170 @@ def is_neon_number_better(n):
         sqaure //= 10 
     return total == n
 
+# =========================================================
+# Harshad Number (Niven Number)
+# =========================================================
+
+def is_harshad_number(n):
+    
+    if n <= 0:
+        return False
+    
+    original = n 
+    digit_sum = 0
+    
+    while n: 
+        digit_sum += n % 10
+        
+        n //= 10
+        
+        return original % digit_sum == 0
+    
+    
+# =========================================================
+# Spy Number
+# =========================================================
+
+def is_spy_number(n):
+    if n < 0: 
+        return False
+    
+    digit_sum = 0
+    digit_product = 1
+    
+    while n:
+        digit = n % 10
+        
+        digit_sum += digit
+        
+        digit_product *= digit
+        
+        n //= 10
+        
+    return digit_sum == digit_product
+    
+# =========================================================
+# Duck Number
+# =========================================================        
+'''
+A Duck Number is:
+
+A number containing at least one zero, but NOT starting with zero.
+'''
+def is_duck_number(n):
+    
+    if n <= 0:
+        return False
+    
+    while n: 
+        
+        digit = n % 10 
+        
+        if digit == 0:
+            return True
+        
+        n //= 10
+    return False
+
+
+# =========================================================
+# Duck Number / String-Based Version
+# =========================================================   
+
+def is_duck_number(n):
+
+    return '0' in str(n) and str(n)[0] != '0'
+
+
+# =========================================================
+# Sunny Number
+# =========================================================   
+
+'''
+A number is called a Sunny Number if:
+
+n + 1 is a perfect square.
+'''
+import math
+
+def is_sunny_number(n):
+    
+    if n < 0:
+        return False
+    
+    value = n + 1
+    
+    root = int(math.sqrt(value))
+    
+    return root * root == value
+
+# =========================================================
+# Peterson Number
+# =========================================================  
+
+'''
+A number is called a Peterson Number if:
+
+Sum of factorials of digits equals the original number.
+'''
+
+'''
+Wait… Isn’t This Same as Strong Number?
+
+YES.
+'''
+factorials = [1] * 10
+
+for i in range(1, 10):
+
+    factorials[i] = factorials[i - 1] * i
+
+
+def is_peterson_number(n):
+    
+    if n < 0:
+        return False
+    
+    original = n 
+    total = 0 
+    
+    while n: 
+        
+        digit = n % 10 
+        total += factorials[digit]
+        
+        n //= 10 
+    return total == original
+
+# =========================================================
+# Disarium Number
+# =========================================================  
+
+'''
+A number is called a Disarium Number if:
+
+Sum of digits raised to their positions equals the original number.
+'''
+
+'''
+1¹ + 3² + 5³  = 135
+1 + 9 + 125 = 135
+'''
+
+def is_disarium_number(n):
+    
+    if n < 0:
+        return False
+    
+    digits = str(n)
+    
+    total = 0
+    
+    for position, digit in enumerate(digits, start=1):
+        total += int(digit) ** position
+    return total == n 
+
+
 
 # =========================================================
 # TEST CASES
@@ -1187,3 +1351,41 @@ print()
 print("========== Neon Number Better Version==========")
 print(is_neon_number_better(9))
 print(is_neon_number_better(7))
+
+print()
+print("========== Harshad Number (Niven Number) ==========")
+print(is_harshad_number(18))
+print(is_harshad_number(19))
+
+
+print()
+print("========== Spy Number ==========")
+print(is_spy_number(123))
+print(is_spy_number(124))
+
+print()
+print("========== Duck Number ==========")
+print(is_duck_number(1023))
+print(is_duck_number(1234))
+print(is_duck_number(3210))
+
+print()
+print("========== Duck Number / String-Based Version ==========")
+print(is_duck_number(1023))
+
+print()
+print("========== Sunny Number ==========")
+print(is_sunny_number(8))
+print(is_sunny_number(15))
+print(is_sunny_number(10))
+
+print()
+print("========== Peterson Number ==========")
+print(is_peterson_number(145))
+print(is_peterson_number(123))
+
+print()
+print("========== Disarium Number ==========")
+print(is_disarium_number(135))
+print(is_disarium_number(89))
+print(is_disarium_number(123))
