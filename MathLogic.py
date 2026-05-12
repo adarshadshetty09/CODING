@@ -1140,7 +1140,32 @@ def is_disarium_number(n):
         total += int(digit) ** position
     return total == n 
 
+# =========================================================
+# Happy Number
+# =========================================================  
+# Helper Function
 
+def square_digit_sum(n):
+    total = 0
+    
+    while n:
+        
+        digit = n % 10 
+        total += digit * digit
+        
+        n //= 10
+    return total
+
+def is_happy_number(n):
+    if n <= 0:
+        return False
+    visited = set()
+    
+    while n != 1 and n not in visited:
+        visited.add(n)
+        
+        n = square_digit_sum(n)
+    return n == 1
 
 # =========================================================
 # TEST CASES
@@ -1389,3 +1414,8 @@ print("========== Disarium Number ==========")
 print(is_disarium_number(135))
 print(is_disarium_number(89))
 print(is_disarium_number(123))
+
+print()
+print("========== Happy Number ==========")
+print(is_happy_number(19))
+print(is_happy_number(4))
