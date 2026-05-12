@@ -1296,6 +1296,40 @@ def is_adam_number(n):
     return reversed_square == reversed_number_square
 
 
+# =========================================================
+# Magic Number Function
+# ========================================================= 
+'''
+A number is called a Magic Number if:
+
+Repeated sum of digits eventually becomes 1.
+'''
+
+def digit_sum(n):
+
+    total = 0
+
+    while n:
+
+        total += n % 10
+
+        n //= 10
+
+    return total
+
+
+def is_magic_number(n):
+
+    if n <= 0:
+        return False
+
+    while n > 9:
+
+        n = digit_sum(n)
+
+    return n == 1
+
+
 
 # =========================================================
 # TEST CASES
@@ -1562,3 +1596,10 @@ print("========== Adam Number Function ==========")
 print(is_adam_number(12))
 print(is_adam_number(13))
 print(is_adam_number(11))
+
+
+print()
+print("========== Magic Number Function ==========")
+print(is_magic_number(1729))
+print(is_magic_number(1234))
+print(is_magic_number(1235))
