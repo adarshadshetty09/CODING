@@ -1241,6 +1241,63 @@ def is_kaprekar_number(n):
     return left + right == n
 
 # =========================================================
+# Adam Number Function
+# =========================================================  
+
+
+'''
+# Better Version Of Reverse Number
+
+def reverse_number(n):
+
+    sign = -1 if n < 0 else 1
+
+    n = abs(n)
+
+    reverse = 0
+
+    while n:
+
+        reverse = reverse * 10 + (n % 10)
+
+        n //= 10
+
+    return sign * reverse
+
+'''
+
+
+def reverse_number(n):
+
+    reverse = 0
+
+    while n:
+
+        reverse = reverse * 10 + (n % 10)
+
+        n //= 10
+
+    return reverse
+
+
+def is_adam_number(n):
+
+    if n < 0:
+        return False
+
+    square = n * n
+
+    reversed_square = reverse_number(square)
+
+    reversed_number = reverse_number(n)
+
+    reversed_number_square = reversed_number * reversed_number
+
+    return reversed_square == reversed_number_square
+
+
+
+# =========================================================
 # TEST CASES
 # =========================================================
 
@@ -1498,3 +1555,10 @@ print("========== Kaprekar Number ==========")
 print(is_kaprekar_number(45))
 print(is_kaprekar_number(9))
 print(is_kaprekar_number(10))
+
+
+print()
+print("========== Adam Number Function ==========")
+print(is_adam_number(12))
+print(is_adam_number(13))
+print(is_adam_number(11))
