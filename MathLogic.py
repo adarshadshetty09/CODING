@@ -1009,35 +1009,77 @@ def is_neon_number(n):
     return total == n
 
 
-# =========================================================
-# Neon Number / Better Version
-# =========================================================
+
+
+
 
 # =========================================================
 # NEON NUMBER - OPTIMIZED VERSION
 # =========================================================
 
+"""
+A number is called a Neon Number if:
+
+Sum of digits of square of the number
+equals the original number.
+"""
+
+
 def is_neon_number_better(n):
     """
-    Optimized Neon Number check.
+    Check whether number is Neon Number.
 
     Logic:
-    - Find square
-    - Add digits of square
-    - Compare with original number
+    - Find square of number
+    - Extract digits of square
+    - Add all digits
+    - Compare sum with original number
 
-    Handles:
-    - Zero case
+    Formula:
+    digit_sum(n²) == n
+
+    Example:
+    9
+
+    Step 1:
+    9² = 81
+
+    Step 2:
+    Digit Sum:
+    8 + 1 = 9
+
+    Step 3:
+    9 == 9
+
+    So 9 is Neon Number
+
+    Example:
+    1
+
+    1² = 1
+
+    Digit Sum:
+    1
+
+    So 1 is also Neon Number
+
+    Why is this optimized?
+    - Uses mathematical digit extraction
+    - No string conversion used
+    - Constant extra space
 
     Time Complexity  : O(log n)
     Space Complexity : O(1)
     """
 
+    # Negative numbers are not Neon numbers
     if n < 0:
         return False
 
+    # Find square of number
     square = n * n
 
+    # Special case for 0
     if square == 0:
         return True
 
@@ -1045,18 +1087,33 @@ def is_neon_number_better(n):
 
     while square:
 
-        total += square % 10
+        # Extract last digit
+        digit = square % 10
 
+        # Add digit to total
+        total += digit
+
+        # Remove last digit
         square //= 10
 
+    # Compare with original number
     return total == n
-# =========================================================
-# Harshad Number (Niven Number)
-# =========================================================
+
+
+
 
 # =========================================================
 # HARSHAD NUMBER (NIVEN NUMBER)
 # =========================================================
+
+"""
+A number is called a Harshad Number
+(or Niven Number) if:
+
+The number is divisible by
+the sum of its digits.
+"""
+
 
 def is_harshad_number(n):
     """
@@ -1064,23 +1121,52 @@ def is_harshad_number(n):
 
     Logic:
     - Find sum of digits
-    - If number is divisible by digit sum,
-      then it is Harshad Number
+    - Check whether original number
+      is divisible by digit sum
+    - If divisible, then it is
+      Harshad Number
+
+    Formula:
+    number % digit_sum == 0
 
     Example:
     18
 
+    Step 1:
     Digit Sum:
     1 + 8 = 9
 
+    Step 2:
     18 % 9 == 0
 
-    So 18 is Harshad Number
+    Since remainder is 0,
+    18 is Harshad Number
+
+    Example:
+    21
+
+    Digit Sum:
+    2 + 1 = 3
+
+    21 % 3 == 0
+
+    So 21 is also Harshad Number
+
+    Example:
+    19
+
+    Digit Sum:
+    1 + 9 = 10
+
+    19 % 10 != 0
+
+    So 19 is NOT Harshad Number
 
     Time Complexity  : O(log n)
     Space Complexity : O(1)
     """
 
+    # Harshad numbers are positive integers
     if n <= 0:
         return False
 
@@ -1090,122 +1176,330 @@ def is_harshad_number(n):
 
     while n:
 
-        digit_sum += n % 10
+        # Extract last digit
+        digit = n % 10
 
+        # Add digit to digit sum
+        digit_sum += digit
+
+        # Remove last digit
         n //= 10
 
+    # Check divisibility condition
     return original % digit_sum == 0
+
+
     
 # =========================================================
-# Spy Number
+# SPY NUMBER
 # =========================================================
+
+"""
+A number is called a Spy Number if:
+
+Sum of digits equals
+product of digits.
+"""
+
 
 def is_spy_number(n):
-    if n < 0: 
+    """
+    Check whether number is Spy Number.
+
+    Logic:
+    - Extract digits one by one
+    - Find:
+        1. Sum of digits
+        2. Product of digits
+    - Compare both values
+
+    Formula:
+    sum_of_digits == product_of_digits
+
+    Example:
+    123
+
+    Sum:
+    1 + 2 + 3 = 6
+
+    Product:
+    1 × 2 × 3 = 6
+
+    Both are equal.
+
+    So 123 is Spy Number
+
+    Example:
+    1124
+
+    Sum:
+    1 + 1 + 2 + 4 = 8
+
+    Product:
+    1 × 1 × 2 × 4 = 8
+
+    So 1124 is also Spy Number
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
+    # Negative numbers are not Spy numbers
+    if n < 0:
         return False
-    
+
     digit_sum = 0
+
     digit_product = 1
-    
+
     while n:
+
+        # Extract last digit
         digit = n % 10
-        
+
+        # Add digit to sum
         digit_sum += digit
-        
+
+        # Multiply digit to product
         digit_product *= digit
-        
+
+        # Remove last digit
         n //= 10
-        
+
+    # Compare sum and product
     return digit_sum == digit_product
+
+
+
+
+
     
-# =========================================================
-# Duck Number
-# =========================================================        
-'''
-A Duck Number is:
-
-A number containing at least one zero, but NOT starting with zero.
-'''
-def is_duck_number(n):
-    
-    if n <= 0:
-        return False
-    
-    while n: 
-        
-        digit = n % 10 
-        
-        if digit == 0:
-            return True
-        
-        n //= 10
-    return False
-
-
-# =========================================================
-# Duck Number / String-Based Version
-# =========================================================   
-
 # =========================================================
 # DUCK NUMBER
 # =========================================================
+
+"""
+A Duck Number is:
+
+A number containing at least one zero,
+but NOT starting with zero.
+"""
+
 
 def is_duck_number(n):
     """
     Check whether number is Duck Number.
 
     Logic:
-    - Duck number contains at least one 0
-    - Number should not start with 0
+    - Extract digits one by one using % 10
+    - If any digit becomes 0,
+      then it is Duck Number
 
     Example:
-    1023 -> Duck Number
+    1023
+
+    Digits:
+    3 → 2 → 0 → 1
+
+    Contains zero.
+
+    So 1023 is Duck Number
+
+    Example:
+    321
+
+    Digits:
+    1 → 2 → 3
+
+    No zero found.
+
+    So not a Duck Number
+
+    Note:
+    Mathematical approach cannot detect
+    leading zeros because integers do not
+    store leading zeros.
+
+    Example:
+    0123 becomes 123 internally.
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
+    # Duck numbers are positive integers
+    if n <= 0:
+        return False
+
+    while n:
+
+        # Extract last digit
+        digit = n % 10
+
+        # Check whether digit is 0
+        if digit == 0:
+            return True
+
+        # Remove last digit
+        n //= 10
+
+    return False
+
+# =========================================================
+# DUCK NUMBER
+# =========================================================
+
+"""
+A Duck Number is:
+
+A number containing at least one zero,
+but NOT starting with zero.
+"""
+
+
+def is_duck_number(n):
+    """
+    Check whether number is Duck Number.
+
+    Logic:
+    - Convert number into string
+    - Check whether:
+        1. Number contains at least one '0'
+        2. Number does not start with '0'
+
+    Example:
+    1023
+
+    Contains:
+    0
+
+    Does not start with:
+    0
+
+    So 1023 is Duck Number
+
+    Example:
+    321
+
+    No zero present.
+
+    So not a Duck Number
+
+    Example:
+    0123
+
+    Starts with zero.
+
+    So not a Duck Number
+
+    Why use string approach?
+    - Cleaner and more readable
+    - Easier to check leading zero
+    - Avoids extra mathematical logic
 
     Time Complexity  : O(log n)
     Space Complexity : O(log n)
     """
 
+    # Duck numbers are positive integers
+    if n <= 0:
+        return False
+
+    # Convert number into string
     number = str(n)
 
+    # Check Duck Number condition
     return '0' in number and number[0] != '0'
 
-# =========================================================
-# Sunny Number
-# =========================================================   
 
-'''
+
+
+
+# =========================================================
+# SUNNY NUMBER
+# =========================================================
+
+"""
 A number is called a Sunny Number if:
 
 n + 1 is a perfect square.
-'''
+"""
+
 import math
 
+
 def is_sunny_number(n):
-    
+    """
+    Check whether number is Sunny Number.
+
+    Logic:
+    - Add 1 to the number
+    - Find square root of resulting value
+    - If square root is a whole number,
+      then it is Sunny Number
+
+    Formula:
+    n + 1 = perfect square
+
+    Example:
+    8
+
+    8 + 1 = 9
+
+    √9 = 3
+
+    3 × 3 = 9
+
+    Since 9 is a perfect square,
+    8 is Sunny Number
+
+    Example:
+    15
+
+    15 + 1 = 16
+
+    √16 = 4
+
+    4 × 4 = 16
+
+    So 15 is also Sunny Number
+
+    Time Complexity  : O(1)
+    Space Complexity : O(1)
+    """
+
+    # Negative numbers are not Sunny numbers
     if n < 0:
         return False
-    
+
+    # Add 1 to number
     value = n + 1
-    
+
+    # Find square root
     root = int(math.sqrt(value))
-    
+
+    # Check perfect square condition
     return root * root == value
 
-# =========================================================
-# Peterson Number
-# =========================================================  
 
-'''
+# =========================================================
+# PETERSON NUMBER
+# =========================================================
+
+"""
 A number is called a Peterson Number if:
 
-Sum of factorials of digits equals the original number.
-'''
+Sum of factorials of digits equals
+the original number.
 
-'''
-Wait… Isn’t This Same as Strong Number?
+Note:
+Peterson Number and Strong Number
+are the same concept.
+"""
 
-YES.
-'''
+
+# Precompute factorials from 0 to 9
+# to avoid repeated factorial calculations
 factorials = [1] * 10
 
 for i in range(1, 10):
@@ -1214,118 +1508,251 @@ for i in range(1, 10):
 
 
 def is_peterson_number(n):
-    
+    """
+    Check whether number is Peterson Number.
+
+    Logic:
+    - Extract digits one by one
+    - Find factorial of each digit
+    - Add all factorial values
+    - Compare total with original number
+
+    Example:
+    145
+
+    1! + 4! + 5!
+    = 1 + 24 + 120
+    = 145
+
+    Equals original number.
+
+    So 145 is Peterson Number
+
+    Why use precomputed factorials?
+    - Digits are only from 0 to 9
+    - Avoid repeated factorial calculation
+    - Improves performance
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
+    # Negative numbers are not Peterson numbers
     if n < 0:
         return False
-    
-    original = n 
-    total = 0 
-    
-    while n: 
-        
-        digit = n % 10 
+
+    original = n
+
+    total = 0
+
+    while n:
+
+        # Extract last digit
+        digit = n % 10
+
+        # Add factorial of digit
         total += factorials[digit]
-        
-        n //= 10 
+
+        # Remove last digit
+        n //= 10
+
+    # Compare with original number
     return total == original
 
+
+
+
 # =========================================================
-# Disarium Number
-# =========================================================  
-
-'''
-A number is called a Disarium Number if:
-
-Sum of digits raised to their positions equals the original number.
-'''
-
-'''
-1¹ + 3² + 5³  = 135
-1 + 9 + 125 = 135
-'''
+# DISARIUM NUMBER
+# =========================================================
 
 def is_disarium_number(n):
-    
+    """
+    Check whether number is Disarium Number.
+
+    Logic:
+    - Convert number into string
+    - Traverse digits with their positions
+    - Raise each digit to its position
+    - Add all powered values
+    - Compare total with original number
+
+    Formula:
+    digit¹ + digit² + digit³ + ...
+
+    Example:
+    135
+
+    1¹ + 3² + 5³
+    = 1 + 9 + 125
+    = 135
+
+    Equals original number.
+
+    So 135 is Disarium Number
+
+    Example:
+    89
+
+    8¹ + 9²
+    = 8 + 81
+    = 89
+
+    So 89 is also Disarium Number
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(log n)
+    """
+
+    # Negative numbers are not Disarium numbers
     if n < 0:
         return False
-    
+
+    # Convert number into string
     digits = str(n)
-    
+
     total = 0
-    
+
+    # Enumerate gives:
+    # position and digit together
+    # start=1 because positions begin from 1
     for position, digit in enumerate(digits, start=1):
+
+        # Raise digit to its position
         total += int(digit) ** position
-    return total == n 
+
+    # Compare with original number
+    return total == n
 
 # =========================================================
-# Happy Number
-# =========================================================  
-# Helper Function
+# HAPPY NUMBER
+# =========================================================
+
 
 def square_digit_sum(n):
+    """
+    Find sum of squares of digits.
+
+    Logic:
+    - Extract digits one by one using % 10
+    - Square each digit
+    - Add squared values
+    - Remove last digit using // 10
+
+    Example:
+    19
+
+    1² + 9²
+    = 1 + 81
+    = 82
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
     total = 0
-    
+
     while n:
-        
-        digit = n % 10 
+
+        # Extract last digit
+        digit = n % 10
+
+        # Add square of digit
         total += digit * digit
-        
+
+        # Remove last digit
         n //= 10
+
     return total
 
+
 def is_happy_number(n):
+    """
+    Check whether number is Happy Number.
+
+    Logic:
+    - Replace number with sum of squares of digits
+    - Repeat the process
+    - If number becomes 1 -> Happy Number
+    - If number repeats again -> Not Happy Number
+
+    Why use set?
+    - To detect infinite loops
+    - Non-happy numbers eventually repeat
+
+    Example:
+    19
+
+    Step 1:
+    1² + 9² = 82
+
+    Step 2:
+    8² + 2² = 68
+
+    Step 3:
+    6² + 8² = 100
+
+    Step 4:
+    1² + 0² + 0² = 1
+
+    Since it becomes 1,
+    19 is Happy Number.
+
+    Example of Non-Happy Number:
+    4
+
+    4² = 16
+    1² + 6² = 37
+    3² + 7² = 58
+    5² + 8² = 89
+    ...
+
+    Eventually repeats again.
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(log n)
+    """
+
+    # Happy numbers are positive integers
     if n <= 0:
         return False
+
+    # Store visited numbers to detect loop
     visited = set()
-    
+
+    # Continue until number becomes 1
+    # or loop repeats
     while n != 1 and n not in visited:
+
         visited.add(n)
-        
+
         n = square_digit_sum(n)
+
     return n == 1
 
-
 # =========================================================
-# Kaprekar Number
-# =========================================================  
-# Helper Function
+# KAPREKAR NUMBER
 # =========================================================
 
-'''
-What is a Kaprekar Number?
-
-A number is called a Kaprekar Number if:
-
-Square of the number can be split into two parts whose sum equals the original number.
-'''
-
-'''
-Example 1
-
-Input:
-
-45
-
-Square:
-
-45² = 2025
-
-Split:
-
-20 and 25
-
-Add:
-
-20 + 25 = 45
-
-Equals original number.
-
-So:
-
-45 is Kaprekar Number
-'''
 
 def count_digits(n):
+    """
+    Count digits in a number.
+
+    Logic:
+    - Remove digits one by one using // 10
+    - Count how many times division happens
+
+    Example:
+    1234
+
+    1234 -> 123 -> 12 -> 1 -> 0
+
+    Total digits = 4
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
 
     if n == 0:
         return 1
@@ -1335,56 +1762,100 @@ def count_digits(n):
     while n:
 
         count += 1
+
         n //= 10
 
     return count
 
 
 def is_kaprekar_number(n):
+    """
+    Check whether number is Kaprekar Number.
 
+    Logic:
+    - Find square of number
+    - Count digits in original number
+    - Split square into two parts
+    - Add both parts
+    - Compare with original number
+
+    Formula:
+    left_part + right_part == original_number
+
+    Example:
+    45
+
+    Step 1:
+    45² = 2025
+
+    Step 2:
+    Digits in 45 = 2
+
+    Step 3:
+    Split square using divisor = 10² = 100
+
+    Left  = 2025 // 100 = 20
+    Right = 2025 % 100 = 25
+
+    Step 4:
+    20 + 25 = 45
+
+    Equals original number.
+
+    So 45 is Kaprekar Number
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
+    # Kaprekar numbers are positive numbers
     if n < 1:
         return False
 
+    # Find square of number
     square = n * n
 
+    # Count digits in original number
     digits = count_digits(n)
 
+    # Create divisor for splitting square
     divisor = 10 ** digits
 
+    # Split square into left and right parts
     left = square // divisor
 
     right = square % divisor
 
+    # Check Kaprekar condition
     return left + right == n
 
+
+
 # =========================================================
-# Adam Number Function
-# =========================================================  
-
-
-'''
-# Better Version Of Reverse Number
+# ADAM NUMBER
+# =========================================================
 
 def reverse_number(n):
+    """
+    Reverse a number.
 
-    sign = -1 if n < 0 else 1
+    Logic:
+    - Extract last digit using % 10
+    - Add digit to reversed number
+    - Remove last digit using // 10
 
-    n = abs(n)
+    Example:
+    123
 
     reverse = 0
 
-    while n:
+    reverse = 0 * 10 + 3 = 3
+    reverse = 3 * 10 + 2 = 32
+    reverse = 32 * 10 + 1 = 321
 
-        reverse = reverse * 10 + (n % 10)
-
-        n //= 10
-
-    return sign * reverse
-
-'''
-
-
-def reverse_number(n):
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
 
     reverse = 0
 
@@ -1398,31 +1869,82 @@ def reverse_number(n):
 
 
 def is_adam_number(n):
+    """
+    Check whether number is Adam Number.
+
+    Logic:
+    - Find square of number
+    - Reverse the square
+    - Reverse original number
+    - Find square of reversed number
+    - Compare both values
+
+    Formula:
+    reverse(n²) == (reverse(n))²
+
+    Example:
+    12
+
+    Step 1:
+    12² = 144
+
+    Step 2:
+    Reverse(144) = 441
+
+    Step 3:
+    Reverse(12) = 21
+
+    Step 4:
+    21² = 441
+
+    Both are equal.
+
+    So 12 is Adam Number
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
 
     if n < 0:
         return False
 
+    # Square of original number
     square = n * n
 
+    # Reverse the square
     reversed_square = reverse_number(square)
 
+    # Reverse original number
     reversed_number = reverse_number(n)
 
+    # Square of reversed number
     reversed_number_square = reversed_number * reversed_number
 
+    # Compare both values
     return reversed_square == reversed_number_square
 
 
 # =========================================================
-# Magic Number Function
-# ========================================================= 
-'''
-A number is called a Magic Number if:
-
-Repeated sum of digits eventually becomes 1.
-'''
+# MAGIC NUMBER
+# =========================================================
 
 def digit_sum(n):
+    """
+    Find sum of digits of a number.
+
+    Logic:
+    - Extract digits one by one using % 10
+    - Add extracted digits
+    - Remove last digit using // 10
+
+    Example:
+    1729
+
+    1 + 7 + 2 + 9 = 19
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
 
     total = 0
 
@@ -1436,17 +1958,37 @@ def digit_sum(n):
 
 
 def is_magic_number(n):
+    """
+    Check whether number is Magic Number.
+
+    Logic:
+    - Repeatedly calculate sum of digits
+    - Continue until single digit remains
+    - If final digit becomes 1,
+      then it is a Magic Number
+
+    Example:
+    1729
+
+    1 + 7 + 2 + 9 = 19
+    1 + 9 = 10
+    1 + 0 = 1
+
+    So 1729 is Magic Number
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
 
     if n <= 0:
         return False
 
+    # Repeat until single digit remains
     while n > 9:
 
         n = digit_sum(n)
 
     return n == 1
-
-
 
 # =========================================================
 # TEST CASES
