@@ -1498,3 +1498,4 @@ print("========== Kaprekar Number ==========")
 print(is_kaprekar_number(45))
 print(is_kaprekar_number(9))
 print(is_kaprekar_number(10))
+
