@@ -664,12 +664,37 @@ def is_strong_number_optimized(n):
 
     return total == original
 
-
-# =======================================
-# Fibonacci Series
-# =======================================
+# =========================================================
+# FIBONACCI SERIES
+# =========================================================
 
 def fibonacci(n):
+    """
+    Print Fibonacci series.
+
+    Logic:
+    - Fibonacci sequence starts with:
+      0, 1
+
+    - Every next number is sum of previous two numbers.
+
+    Formula:
+    next_number = a + b
+
+    Example:
+    0 1 1 2 3 5 8
+
+    Step-by-step:
+    a = 0
+    b = 1
+
+    next = 0 + 1 = 1
+    next = 1 + 1 = 2
+    next = 1 + 2 = 3
+
+    Time Complexity  : O(n)
+    Space Complexity : O(1)
+    """
 
     a = 0
     b = 1
@@ -684,76 +709,186 @@ def fibonacci(n):
         b = next_number
 
 
-
-# =======================================
-# Fibonacci Using List
-# =======================================
+# =========================================================
+# FIBONACCI USING LIST
+# =========================================================
 
 def fibonacci_list(n):
-    fib = [0 , 1]
-    
+    """
+    Generate Fibonacci series using list.
+
+    Logic:
+    - Store Fibonacci numbers inside list
+    - Every next number is sum of previous two numbers
+
+    Example:
+    fib[0] = 0
+    fib[1] = 1
+
+    fib[2] = fib[1] + fib[0]
+    fib[3] = fib[2] + fib[1]
+
+    Output:
+    [0,1,1,2,3,5,8...]
+
+    Time Complexity  : O(n)
+    Space Complexity : O(n)
+    """
+
+    fib = [0, 1]
+
     for i in range(2, n):
+
         fib.append(fib[i - 1] + fib[i - 2])
-    
+
     return fib
 
 
-# =======================================
-# Decimal to Binary Conversion
-# =======================================
+# =========================================================
+# DECIMAL TO BINARY CONVERSION
+# =========================================================
+
 def decimal_to_binary(n):
-    
+    """
+    Convert decimal number to binary.
+
+    Logic:
+    - Divide number by 2 repeatedly
+    - Store remainders
+    - Read remainders in reverse order
+
+    Example:
+    13
+
+    13 % 2 = 1
+     6 % 2 = 0
+     3 % 2 = 1
+     1 % 2 = 1
+
+    Binary = 1101
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(log n)
+    """
+
     if n == 0:
         return "0"
-    
+
     binary = ""
-    
+
     while n > 0:
-        remainder  = n % 2 
+
+        remainder = n % 2
+
         binary += str(remainder)
+
         n //= 2
-    return binary[::-1]  # reverse the string
 
-# =======================================
-# Decimal to Binary Conversion/Optimized Version
-# =======================================
+    # Reverse because remainders come backward
+    return binary[::-1]
 
-def decimal_to_binaryv0(n):
+
+# =========================================================
+# DECIMAL TO BINARY - OPTIMIZED VERSION
+# =========================================================
+
+def decimal_to_binary_optimized(n):
+    """
+    Optimized decimal to binary conversion.
+
+    Logic:
+    - Store binary digits inside list
+    - Join list at the end
+    - Faster than repeated string concatenation
+
+    Why Better?
+    - Strings are immutable in Python
+    - List append is more efficient
+
+    Example:
+    13 -> 1101
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(log n)
+    """
+
     if n == 0:
         return "0"
+
     binary = []
+
     while n > 0:
-        binary.append(str( n % 2 ))
+
+        binary.append(str(n % 2))
+
         n //= 2
+
     return ''.join(binary[::-1])
 
-'''
-Why List Version is Better?
 
-Appending to list is efficient.
-
-String concatenation repeatedly creates new strings.
-'''
-
-# =======================================
-# Binary to Decimal Conversion
-# =======================================
+# =========================================================
+# BINARY TO DECIMAL CONVERSION
+# =========================================================
 
 def binary_to_decimal(binary):
+    """
+    Convert binary to decimal.
+
+    Logic:
+    - Traverse binary digits from right to left
+    - Multiply each digit with powers of 2
+    - Add all values
+
+    Example:
+    1101
+
+    = 1×2³ + 1×2² + 0×2¹ + 1×2⁰
+    = 8 + 4 + 0 + 1
+    = 13
+
+    Time Complexity  : O(n)
+    Space Complexity : O(1)
+    """
+
     power = 0
-    decimal = 0 
-    
+    decimal = 0
+
+    # Traverse from right to left
     for digit in binary[::-1]:
+
         decimal += int(digit) * (2 ** power)
+
         power += 1
+
     return decimal
 
 
-# ================================================================
-# Binary to Decimal Conversion / Alternative Mathematical Approach
-# =================================================================
+# =========================================================
+# BINARY TO DECIMAL - ALTERNATIVE METHOD
+# =========================================================
 
 def binary_to_decimal_alt(binary):
+    """
+    Convert binary to decimal using mathematical approach.
+
+    Logic:
+    - Extract digits using modulus (% 10)
+    - Multiply digits with powers of 2
+    - Add all values
+
+    Example:
+    1101
+
+    1 × 2⁰ = 1
+    0 × 2¹ = 0
+    1 × 2² = 4
+    1 × 2³ = 8
+
+    Total = 13
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
 
     decimal = 0
     power = 0
@@ -769,12 +904,6 @@ def binary_to_decimal_alt(binary):
         binary //= 10
 
     return decimal
-
-
-
-
-
-
 
 
 # =========================================================
