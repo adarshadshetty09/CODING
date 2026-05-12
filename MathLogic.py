@@ -1167,6 +1167,79 @@ def is_happy_number(n):
         n = square_digit_sum(n)
     return n == 1
 
+
+# =========================================================
+# Kaprekar Number
+# =========================================================  
+# Helper Function
+# =========================================================
+
+'''
+What is a Kaprekar Number?
+
+A number is called a Kaprekar Number if:
+
+Square of the number can be split into two parts whose sum equals the original number.
+'''
+
+'''
+Example 1
+
+Input:
+
+45
+
+Square:
+
+45² = 2025
+
+Split:
+
+20 and 25
+
+Add:
+
+20 + 25 = 45
+
+Equals original number.
+
+So:
+
+45 is Kaprekar Number
+'''
+
+def count_digits(n):
+
+    if n == 0:
+        return 1
+
+    count = 0
+
+    while n:
+
+        count += 1
+        n //= 10
+
+    return count
+
+
+def is_kaprekar_number(n):
+
+    if n < 1:
+        return False
+
+    square = n * n
+
+    digits = count_digits(n)
+
+    divisor = 10 ** digits
+
+    left = square // divisor
+
+    right = square % divisor
+
+    return left + right == n
+
 # =========================================================
 # TEST CASES
 # =========================================================
@@ -1419,3 +1492,9 @@ print()
 print("========== Happy Number ==========")
 print(is_happy_number(19))
 print(is_happy_number(4))
+
+print()
+print("========== Kaprekar Number ==========")
+print(is_kaprekar_number(45))
+print(is_kaprekar_number(9))
+print(is_kaprekar_number(10))
