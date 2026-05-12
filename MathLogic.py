@@ -263,13 +263,13 @@ def gcd_optimized(a, b):
     """
     Find GCD using Euclidean Algorithm.
 
-    Core Formula:
+    Formula:
     gcd(a, b) = gcd(b, a % b)
 
     Time Complexity  : O(log(min(a, b)))
     Space Complexity : O(1)
     """
-    while b != 0:
+    while b:
         a, b = b, a % b
 
     return a
@@ -286,6 +286,59 @@ def gcd_recursive(a, b):
         return a
 
     return gcd_recursive(b, a % b)
+
+
+# =========================================================
+# LEAST COMMON MULTIPLE (LCM)
+# =========================================================
+
+def lcm_bruteforce(a, b):
+    """
+    Find LCM using brute-force approach.
+
+    Time Complexity  : O(lcm(a, b))
+    Space Complexity : O(1)
+    """
+    greater = max(a, b)
+
+    while True:
+
+        if greater % a == 0 and greater % b == 0:
+            return greater
+
+        greater += 1
+
+
+def lcm_optimized(a, b):
+    """
+    Find LCM using GCD formula.
+
+    Formula:
+    LCM(a, b) * GCD(a, b) = a * b
+
+    LCM(a, b) = (a * b) // GCD(a, b)
+
+    Time Complexity  : O(log(min(a, b)))
+    Space Complexity : O(1)
+    """
+    return (a * b) // gcd_optimized(a, b)
+
+
+def lcm_safe(a, b):
+    """
+    Safe LCM implementation.
+
+    Handles:
+    - Zero
+    - Negative numbers
+
+    Time Complexity  : O(log(min(a, b)))
+    Space Complexity : O(1)
+    """
+    if a == 0 or b == 0:
+        return 0
+
+    return abs(a * b) // gcd_optimized(a, b)
 
 
 # =========================================================
@@ -399,3 +452,26 @@ print()
 print("========== GCD - RECURSIVE ==========")
 
 print(gcd_recursive(48, 18))
+
+print()
+
+
+print("========== LCM - BRUTE FORCE ==========")
+
+print(lcm_bruteforce(4, 6))
+
+print()
+
+
+print("========== LCM - OPTIMIZED ==========")
+
+print(lcm_optimized(12, 18))
+
+print()
+
+
+print("========== LCM - SAFE VERSION ==========")
+
+print(lcm_safe(12, 18))
+print(lcm_safe(0, 5))
+print(lcm_safe(-4, 6))
