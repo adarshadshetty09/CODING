@@ -665,6 +665,118 @@ def is_strong_number_optimized(n):
     return total == original
 
 
+# =======================================
+# Fibonacci Series
+# =======================================
+
+def fibonacci(n):
+
+    a = 0
+    b = 1
+
+    for _ in range(n):
+
+        print(a, end=" ")
+
+        next_number = a + b
+
+        a = b
+        b = next_number
+
+
+
+# =======================================
+# Fibonacci Using List
+# =======================================
+
+def fibonacci_list(n):
+    fib = [0 , 1]
+    
+    for i in range(2, n):
+        fib.append(fib[i - 1] + fib[i - 2])
+    
+    return fib
+
+
+# =======================================
+# Decimal to Binary Conversion
+# =======================================
+def decimal_to_binary(n):
+    
+    if n == 0:
+        return "0"
+    
+    binary = ""
+    
+    while n > 0:
+        remainder  = n % 2 
+        binary += str(remainder)
+        n //= 2
+    return binary[::-1]  # reverse the string
+
+# =======================================
+# Decimal to Binary Conversion/Optimized Version
+# =======================================
+
+def decimal_to_binaryv0(n):
+    if n == 0:
+        return "0"
+    binary = []
+    while n > 0:
+        binary.append(str( n % 2 ))
+        n //= 2
+    return ''.join(binary[::-1])
+
+'''
+Why List Version is Better?
+
+Appending to list is efficient.
+
+String concatenation repeatedly creates new strings.
+'''
+
+# =======================================
+# Binary to Decimal Conversion
+# =======================================
+
+def binary_to_decimal(binary):
+    power = 0
+    decimal = 0 
+    
+    for digit in binary[::-1]:
+        decimal += int(digit) * (2 ** power)
+        power += 1
+    return decimal
+
+
+# ================================================================
+# Binary to Decimal Conversion / Alternative Mathematical Approach
+# =================================================================
+
+def binary_to_decimal_alt(binary):
+
+    decimal = 0
+    power = 0
+
+    while binary > 0:
+
+        digit = binary % 10
+
+        decimal += digit * (2 ** power)
+
+        power += 1
+
+        binary //= 10
+
+    return decimal
+
+
+
+
+
+
+
+
 # =========================================================
 # TEST CASES
 # =========================================================
@@ -824,3 +936,36 @@ print("========== OPTIMIZED STRONG NUMBER ==========")
 
 print(is_strong_number_optimized(145))
 print(is_strong_number_optimized(123))
+
+
+print()
+
+
+print("========== Fibonacci Series ==========")
+print(fibonacci(7))
+
+print()
+print("========== Fibonacci Series List ==========")
+print(fibonacci_list(10))
+
+print()
+print("========== Decimal to Binary Conversion ==========")
+print(decimal_to_binary(13))
+print(decimal_to_binary(8))
+print(decimal_to_binary(5))
+
+print()
+print("========== Decimal to Binary Conversion/Optimized Version ==========")
+print(decimal_to_binaryv0(13))
+print(decimal_to_binaryv0(8))
+print(decimal_to_binaryv0(5))
+
+print()
+print("========== Binary to Decimal Conversion  ==========")
+print(binary_to_decimal("1101"))
+print(binary_to_decimal("1011"))
+
+print()
+print("========== Binary to Decimal Conversion Aleternate Method ==========")
+print(binary_to_decimal_alt(1101))
+print(binary_to_decimal_alt(1011))
