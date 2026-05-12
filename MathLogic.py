@@ -933,6 +933,51 @@ def is_automorphic(n):
     
     return square % divisor == n 
 
+
+# =========================================================
+# Neon Number
+# =========================================================
+
+def is_neon_number(n):
+    
+    if n < 0:
+        return False
+    
+    square = n * n 
+    
+    total = 0
+    
+    while square:
+        
+        digit = square % 10 
+        total += digit
+        
+        square //= 10 
+    return total == n
+
+
+# =========================================================
+# Neon Number / Better Version
+# =========================================================
+
+def is_neon_number_better(n):
+    
+    if n < 0:
+        return False
+    
+    sqaure = n * n 
+    
+    if sqaure == 0:
+        return True
+    
+    total = 0 
+    
+    while sqaure:
+        total += sqaure % 10 
+        sqaure //= 10 
+    return total == n
+
+
 # =========================================================
 # TEST CASES
 # =========================================================
@@ -1132,3 +1177,13 @@ print("========== Automorphic Number ==========")
 print(is_automorphic(5))
 print(is_automorphic(25))
 print(is_automorphic(7))
+
+print()
+print("========== Neon Number ==========")
+print(is_neon_number(9))
+print(is_neon_number(7))
+
+print()
+print("========== Neon Number Better Version==========")
+print(is_neon_number_better(9))
+print(is_neon_number_better(7))
