@@ -922,37 +922,90 @@ def count_digits(n):
         count += 1 
     return count
 
+# =========================================================
+# AUTOMORPHIC NUMBER
+# =========================================================
+
 def is_automorphic(n):
-    
+    """
+    Check whether number is Automorphic Number.
+
+    Logic:
+    - Find square of number
+    - Check whether square ends with same digits as number
+
+    Example:
+    25
+
+    Square:
+    25² = 625
+
+    Ends with:
+    25
+
+    So 25 is Automorphic Number
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
     if n < 0:
         return False
-    square = n * n 
-    
-    digits = count_digits(n)
+
+    square = n * n
+
+    digits = count_digits_math(n)
+
     divisor = 10 ** digits
-    
-    return square % divisor == n 
+
+    return square % divisor == n
 
 
 # =========================================================
 # Neon Number
 # =========================================================
 
+# =========================================================
+# NEON NUMBER
+# =========================================================
+
 def is_neon_number(n):
-    
+    """
+    Check whether number is Neon Number.
+
+    Logic:
+    - Find square of number
+    - Add digits of square
+    - Compare sum with original number
+
+    Example:
+    9
+
+    Square:
+    9² = 81
+
+    Digit Sum:
+    8 + 1 = 9
+
+    So 9 is Neon Number
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
     if n < 0:
         return False
-    
-    square = n * n 
-    
+
+    square = n * n
+
     total = 0
-    
+
     while square:
-        
-        digit = square % 10 
-        total += digit
-        
-        square //= 10 
+
+        total += square % 10
+
+        square //= 10
+
     return total == n
 
 
@@ -960,42 +1013,88 @@ def is_neon_number(n):
 # Neon Number / Better Version
 # =========================================================
 
+# =========================================================
+# NEON NUMBER - OPTIMIZED VERSION
+# =========================================================
+
 def is_neon_number_better(n):
-    
+    """
+    Optimized Neon Number check.
+
+    Logic:
+    - Find square
+    - Add digits of square
+    - Compare with original number
+
+    Handles:
+    - Zero case
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
     if n < 0:
         return False
-    
-    sqaure = n * n 
-    
-    if sqaure == 0:
-        return True
-    
-    total = 0 
-    
-    while sqaure:
-        total += sqaure % 10 
-        sqaure //= 10 
-    return total == n
 
+    square = n * n
+
+    if square == 0:
+        return True
+
+    total = 0
+
+    while square:
+
+        total += square % 10
+
+        square //= 10
+
+    return total == n
 # =========================================================
 # Harshad Number (Niven Number)
 # =========================================================
 
+# =========================================================
+# HARSHAD NUMBER (NIVEN NUMBER)
+# =========================================================
+
 def is_harshad_number(n):
-    
+    """
+    Check whether number is Harshad Number.
+
+    Logic:
+    - Find sum of digits
+    - If number is divisible by digit sum,
+      then it is Harshad Number
+
+    Example:
+    18
+
+    Digit Sum:
+    1 + 8 = 9
+
+    18 % 9 == 0
+
+    So 18 is Harshad Number
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
     if n <= 0:
         return False
-    
-    original = n 
+
+    original = n
+
     digit_sum = 0
-    
-    while n: 
+
+    while n:
+
         digit_sum += n % 10
-        
+
         n //= 10
-        
-        return original % digit_sum == 0
-    
+
+    return original % digit_sum == 0
     
 # =========================================================
 # Spy Number
@@ -1047,10 +1146,28 @@ def is_duck_number(n):
 # Duck Number / String-Based Version
 # =========================================================   
 
+# =========================================================
+# DUCK NUMBER
+# =========================================================
+
 def is_duck_number(n):
+    """
+    Check whether number is Duck Number.
 
-    return '0' in str(n) and str(n)[0] != '0'
+    Logic:
+    - Duck number contains at least one 0
+    - Number should not start with 0
 
+    Example:
+    1023 -> Duck Number
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(log n)
+    """
+
+    number = str(n)
+
+    return '0' in number and number[0] != '0'
 
 # =========================================================
 # Sunny Number
