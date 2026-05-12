@@ -907,6 +907,33 @@ def binary_to_decimal_alt(binary):
 
 
 # =========================================================
+# Automorphic Number
+# =========================================================
+
+def count_digits(n):
+    
+    if n == 0:
+        return 1 
+    
+    count = 0
+    
+    while n: 
+        n //= 10
+        count += 1 
+    return count
+
+def is_automorphic(n):
+    
+    if n < 0:
+        return False
+    square = n * n 
+    
+    digits = count_digits(n)
+    divisor = 10 ** digits
+    
+    return square % divisor == n 
+
+# =========================================================
 # TEST CASES
 # =========================================================
 
@@ -1085,9 +1112,9 @@ print(decimal_to_binary(5))
 
 print()
 print("========== Decimal to Binary Conversion/Optimized Version ==========")
-print(decimal_to_binaryv0(13))
-print(decimal_to_binaryv0(8))
-print(decimal_to_binaryv0(5))
+print(decimal_to_binary_optimized(13))
+print(decimal_to_binary_optimized(8))
+print(decimal_to_binary_optimized(5))
 
 print()
 print("========== Binary to Decimal Conversion  ==========")
@@ -1098,3 +1125,10 @@ print()
 print("========== Binary to Decimal Conversion Aleternate Method ==========")
 print(binary_to_decimal_alt(1101))
 print(binary_to_decimal_alt(1011))
+
+
+print()
+print("========== Automorphic Number ==========")
+print(is_automorphic(5))
+print(is_automorphic(25))
+print(is_automorphic(7))
