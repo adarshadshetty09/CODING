@@ -2499,6 +2499,246 @@ def count_set_bits_optimized(n):
         count += 1
 
     return count
+
+
+# =========================================================
+# CHECK ODD OR EVEN USING BITWISE
+# =========================================================
+
+"""
+Bitwise Trick:
+
+Last bit determines whether number is:
+
+0 -> Even Number
+1 -> Odd Number
+
+Reason:
+- Even numbers are divisible by 2
+- Odd numbers are not divisible by 2
+
+Binary Examples:
+
+8  -> 1000  -> last bit = 0 -> Even
+13 -> 1101  -> last bit = 1 -> Odd
+"""
+
+
+def is_even(n):
+    """
+    Check whether number is Even
+    using Bitwise AND operator.
+
+    Logic:
+    - Perform:
+        n & 1
+
+    - If result is 0:
+        number is Even
+
+    Why?
+    - Even numbers always end with 0 in binary
+
+    Example:
+    n = 8
+
+    Binary:
+    1000
+
+    1000 &
+    0001
+    ----
+    0000
+
+    Result = 0
+
+    So 8 is Even
+
+    Example:
+    n = 10
+
+    Binary:
+    1010
+
+    1010 &
+    0001
+    ----
+    0000
+
+    So 10 is Even
+
+    Time Complexity  : O(1)
+    Space Complexity : O(1)
+    """
+
+    return (n & 1) == 0
+
+
+def is_odd(n):
+    """
+    Check whether number is Odd
+    using Bitwise AND operator.
+
+    Logic:
+    - Perform:
+        n & 1
+
+    - If result is 1:
+        number is Odd
+
+    Why?
+    - Odd numbers always end with 1 in binary
+
+    Example:
+    n = 13
+
+    Binary:
+    1101
+
+    1101 &
+    0001
+    ----
+    0001
+
+    Result = 1
+
+    So 13 is Odd
+
+    Example:
+    n = 7
+
+    Binary:
+    0111
+
+    0111 &
+    0001
+    ----
+    0001
+
+    So 7 is Odd
+
+    Time Complexity  : O(1)
+    Space Complexity : O(1)
+    """
+
+    return (n & 1) == 1
+
+# =========================================================
+# SWAP TWO NUMBERS USING XOR
+# =========================================================
+
+"""
+What is XOR?
+
+XOR (^) is a Bitwise Operator.
+
+Rules:
+
+0 ^ 0 = 0
+1 ^ 1 = 0
+0 ^ 1 = 1
+1 ^ 0 = 1
+
+Important Properties:
+
+a ^ a = 0
+a ^ 0 = a
+
+These properties help swap numbers
+without using extra variable.
+"""
+
+
+def swap_numbers(a, b):
+    """
+    Swap two numbers using XOR operation.
+
+    Logic:
+    - XOR both numbers
+    - Reconstruct original values using XOR properties
+    - No extra variable required
+
+    XOR Swap Steps:
+
+    Step 1:
+    a = a ^ b
+
+    Step 2:
+    b = a ^ b
+
+    Step 3:
+    a = a ^ b
+
+    Example:
+    a = 5
+    b = 3
+
+    Binary:
+    5 = 0101
+    3 = 0011
+
+    Step 1:
+    a = 0101 ^ 0011 = 0110
+
+    Step 2:
+    b = 0110 ^ 0011 = 0101 = 5
+
+    Step 3:
+    a = 0110 ^ 0101 = 0011 = 3
+
+    Final:
+    a = 3
+    b = 5
+
+    Why does it work?
+
+    Because:
+    x ^ y ^ y = x
+
+    Time Complexity  : O(1)
+    Space Complexity : O(1)
+    """
+
+    print("Before Swap:")
+
+    print("a =", a)
+
+    print("b =", b)
+
+    # Step 1:
+    # Store XOR of a and b in a
+    a = a ^ b
+
+    # Step 2:
+    # Recover original a into b
+    b = a ^ b
+
+    # Step 3:
+    # Recover original b into a
+    a = a ^ b
+
+    print("\nAfter Swap:")
+
+    print("a =", a)
+
+    print("b =", b)
+
+
+
+# =========================================================
+# Find Unique Element Using XOR
+# =========================================================
+def find_unique(arr):
+    
+    result = 0
+    
+    for num in arr: 
+        
+        result ^= num 
+    
+    return result
+    
+
 # =========================================================
 # TEST CASES
 # =========================================================
@@ -2812,3 +3052,24 @@ print("========== Count Set Bits ==========")
 print(count_set_bits_optimized(13))
 print(count_set_bits_optimized(10))
 print(count_set_bits_optimized(7))
+
+
+
+print()
+print("========== Check Odd or Even Using Bitwise ==========")
+print(is_even(10))
+print(is_even(13))
+print(is_odd(10))
+print(is_odd(13))
+
+print()
+print("========== Swap Two Number ==========")
+swap_numbers(5, 3)
+print()
+swap_numbers(100,101)
+
+
+print()
+print("========== Find Unique Element Using XOR ==========")
+numbers = [2, 3, 5, 4, 5, 3, 4]
+print(find_unique(numbers))
