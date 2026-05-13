@@ -2350,6 +2350,58 @@ def is_power_of_two_brute_force(n):
     # Final value must become 1
     return n == 1
 
+
+# =========================================================
+# Count Set Bits
+# =========================================================
+
+'''
+1 = set bit
+0 = unset bit
+'''
+
+def count_set_bits(n):
+    
+    count = 0
+    
+    while n:
+        
+        count += n & 1
+        
+        n >>= 1
+        
+    return count
+
+
+# =========================================================
+# MOST Important Optimized Method
+# =========================================================
+
+'''
+MOST Important Optimized Method
+
+There is an even faster method:
+
+Brian Kernighan Algorithm
+
+Uses:
+
+n & (n−1)
+
+to remove lowest set bit.
+
+Very famous interview trick.
+'''
+def count_set_bits_optimized(n):
+    
+    count = 0
+    
+    while n:
+        n = n & (n - 1)
+        
+        count += 1
+    return count
+
 # =========================================================
 # TEST CASES
 # =========================================================
@@ -2649,3 +2701,17 @@ print("========== Simplest Brute Force Thinking==========")
 print(is_power_of_two_brute_force(8))
 print(is_power_of_two_brute_force(16))
 print(is_power_of_two_brute_force(10))
+
+
+print()
+print("========== Count Set Bits ==========")
+print(count_set_bits(13))
+print(count_set_bits(10))
+print(count_set_bits(7))
+
+
+print()
+print("========== Count Set Bits ==========")
+print(count_set_bits_optimized(13))
+print(count_set_bits_optimized(10))
+print(count_set_bits_optimized(7))
