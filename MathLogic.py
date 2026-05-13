@@ -2809,7 +2809,94 @@ def find_unique(arr):
 
     # Remaining value is unique element
     return result
-    
+
+
+
+# =========================================================
+# COUNT TRAILING ZEROS IN FACTORIAL
+# =========================================================
+
+"""
+What are Trailing Zeros?
+
+Trailing zeros are zeros present
+at the end of a number.
+
+Example:
+1200
+
+Trailing zeros = 2
+"""
+
+
+def trailing_zeros_factorial(n):
+    """
+    Count trailing zeros in factorial.
+
+    Logic:
+    - Trailing zeros are formed by:
+        10 = 2 × 5
+
+    - In factorials:
+        factors of 2 are always more
+
+    - So we only count factors of 5
+
+    Formula:
+    Count multiples of:
+    5, 25, 125, ...
+
+    Example:
+    10!
+
+    Multiples of 5:
+    5, 10
+
+    Total factors of 5 = 2
+
+    So trailing zeros = 2
+
+    Example:
+    25!
+
+    Multiples of 5:
+    5,10,15,20,25 = 5 numbers
+
+    Extra factor from 25:
+    25 = 5 × 5
+
+    Total:
+    5 + 1 = 6
+
+    So trailing zeros = 6
+
+    Step-by-step:
+    n = 25
+
+    25 // 5   = 5
+    25 // 25  = 1
+    25 // 125 = 0
+
+    Total = 5 + 1 = 6
+
+    Why divide repeatedly by 5?
+    - To count all powers of 5
+
+    Time Complexity  : O(log₅ n)
+    Space Complexity : O(1)
+    """
+
+    count = 0
+
+    while n > 0:
+
+        # Count multiples of 5
+        n = n // 5
+
+        # Add factors of 5
+        count += n
+
+    return count
 
 # =========================================================
 # TEST CASES
@@ -3145,3 +3232,7 @@ print()
 print("========== Find Unique Element Using XOR ==========")
 numbers = [2, 3, 5, 4, 5, 3, 4]
 print(find_unique(numbers))
+
+print()
+print("========== Count Trailing Zeros in Factorial ==========")
+print(trailing_zeros_factorial(234))
