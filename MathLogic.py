@@ -2726,16 +2726,88 @@ def swap_numbers(a, b):
 
 
 # =========================================================
-# Find Unique Element Using XOR
+# FIND UNIQUE ELEMENT USING XOR
 # =========================================================
+
+"""
+Problem Statement:
+
+In an array:
+- Every element appears twice
+- Only one element appears once
+
+Find the unique element.
+
+Example:
+[2, 3, 5, 4, 5, 3, 4]
+
+Output:
+2
+"""
+
+
 def find_unique(arr):
-    
+    """
+    Find unique element using XOR.
+
+    Logic:
+    - XOR of same numbers becomes 0
+
+        a ^ a = 0
+
+    - XOR with 0 returns same number
+
+        a ^ 0 = a
+
+    - Duplicate elements cancel each other
+    - Remaining value is unique element
+
+    Example:
+
+    Array:
+    [2, 3, 5, 4, 5, 3, 4]
+
+    XOR Process:
+
     result = 0
-    
-    for num in arr: 
-        
-        result ^= num 
-    
+
+    0 ^ 2 = 2
+    2 ^ 3 = 1
+    1 ^ 5 = 4
+    4 ^ 4 = 0
+    0 ^ 5 = 5
+    5 ^ 3 = 6
+    6 ^ 4 = 2
+
+    Final Result:
+    2
+
+    Why does this work?
+
+    Because:
+    3 ^ 3 = 0
+    4 ^ 4 = 0
+    5 ^ 5 = 0
+
+    Only unique element remains.
+
+    Important XOR Properties:
+
+    a ^ a = 0
+    a ^ 0 = a
+
+    Time Complexity  : O(n)
+    Space Complexity : O(1)
+    """
+
+    result = 0
+
+    # XOR all elements
+    for num in arr:
+
+        result ^= num
+
+    # Remaining value is unique element
     return result
     
 
@@ -3073,4 +3145,3 @@ print()
 print("========== Find Unique Element Using XOR ==========")
 numbers = [2, 3, 5, 4, 5, 3, 4]
 print(find_unique(numbers))
-# n
