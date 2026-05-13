@@ -2898,6 +2898,90 @@ def trailing_zeros_factorial(n):
 
     return count
 
+
+# =========================================================
+# CHECK PERFECT SQUARE
+# =========================================================
+
+"""
+A number is called Perfect Square if:
+
+It can be written as:
+
+x × x
+
+for some integer x.
+
+Examples:
+
+1  = 1 × 1
+4  = 2 × 2
+9  = 3 × 3
+16 = 4 × 4
+25 = 5 × 5
+"""
+
+import math
+
+
+def is_perfect_square(n):
+    """
+    Check whether number is Perfect Square.
+
+    Logic:
+    - Find square root of number
+    - Convert root to integer
+    - Multiply root by itself
+    - Compare with original number
+
+    Formula:
+    root × root == number
+
+    Example:
+    n = 25
+
+    Step 1:
+    √25 = 5
+
+    Step 2:
+    5 × 5 = 25
+
+    Equals original number.
+
+    So 25 is Perfect Square
+
+    Example:
+    n = 20
+
+    √20 ≈ 4.47
+
+    Integer root = 4
+
+    4 × 4 = 16
+
+    Not equal to 20.
+
+    So 20 is NOT Perfect Square
+
+    Why convert to integer?
+    - Perfect squares always have
+      whole number square roots
+
+    Time Complexity  : O(1)
+    Space Complexity : O(1)
+    """
+
+    # Negative numbers cannot be perfect squares
+    if n < 0:
+        return False
+
+    # Find square root
+    root = int(math.sqrt(n))
+
+    # Check perfect square condition
+    return root * root == n
+
+
 # =========================================================
 # TEST CASES
 # =========================================================
@@ -3235,4 +3319,15 @@ print(find_unique(numbers))
 
 print()
 print("========== Count Trailing Zeros in Factorial ==========")
-print(trailing_zeros_factorial(234))
+print(trailing_zeros_factorial(5))     # 1
+print(trailing_zeros_factorial(10))    # 2
+print(trailing_zeros_factorial(25))    # 6
+print(trailing_zeros_factorial(100))   # 24
+print(trailing_zeros_factorial(234))   # 56
+
+
+print()
+print("========== Check if a Number is a Perfect Square ==========")
+print(is_perfect_square(25))
+print(is_perfect_square(64))
+print(is_perfect_square(34))
