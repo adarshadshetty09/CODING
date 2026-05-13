@@ -2351,57 +2351,154 @@ def is_power_of_two_brute_force(n):
     return n == 1
 
 
-# =========================================================
-# Count Set Bits
+## =========================================================
+# COUNT SET BITS
 # =========================================================
 
-'''
-1 = set bit
-0 = unset bit
-'''
+"""
+What are Set Bits?
+
+1 = Set Bit
+0 = Unset Bit
+
+Example:
+
+Binary:
+13 = 1101
+
+Set Bits:
+1 1 0 1
+
+Total Set Bits = 3
+"""
+
+
+# =========================================================
+# COUNT SET BITS - BASIC METHOD
+# =========================================================
 
 def count_set_bits(n):
-    
+    """
+    Count total set bits using bit manipulation.
+
+    Logic:
+    - Check last bit using:
+        n & 1
+
+    - If last bit is 1,
+      increment count
+
+    - Right shift number by 1
+      to process next bit
+
+    Example:
+    n = 13
+
+    Binary:
+    1101
+
+    Step 1:
+    1101 & 0001 = 1
+
+    Count = 1
+
+    Step 2:
+    Right Shift:
+    1101 >> 1 = 110
+
+    Step 3:
+    0110 & 0001 = 0
+
+    Count = 1
+
+    Continue until number becomes 0.
+
+    Time Complexity  : O(number of bits)
+    Space Complexity : O(1)
+    """
+
     count = 0
-    
+
     while n:
-        
+
+        # Check whether last bit is set
         count += n & 1
-        
+
+        # Right shift by 1 bit
         n >>= 1
-        
+
     return count
 
 
 # =========================================================
-# MOST Important Optimized Method
+# COUNT SET BITS - OPTIMIZED METHOD
 # =========================================================
 
-'''
-MOST Important Optimized Method
-
-There is an even faster method:
+"""
+MOST IMPORTANT OPTIMIZED METHOD
 
 Brian Kernighan Algorithm
 
 Uses:
 
-n & (n−1)
+n & (n - 1)
 
 to remove lowest set bit.
 
 Very famous interview trick.
-'''
-def count_set_bits_optimized(n):
-    
-    count = 0
-    
-    while n:
-        n = n & (n - 1)
-        
-        count += 1
-    return count
+"""
 
+
+def count_set_bits_optimized(n):
+    """
+    Count set bits using Brian Kernighan Algorithm.
+
+    Logic:
+    - Expression:
+        n & (n - 1)
+
+      removes the lowest set bit.
+
+    Example:
+    n = 12
+
+    Binary:
+    1100
+
+    Step 1:
+    1100 & 1011 = 1000
+
+    Lowest set bit removed.
+
+    Step 2:
+    1000 & 0111 = 0000
+
+    Another set bit removed.
+
+    Total operations = total set bits
+
+    Count = 2
+
+    Why is this optimized?
+    - Runs only for set bits
+    - Faster when number contains
+      fewer set bits
+
+    Time Complexity  : O(number of set bits)
+    Space Complexity : O(1)
+    """
+
+    count = 0
+
+    while n:
+
+        # Remove lowest set bit
+        n = n & (n - 1)
+
+        # Increment count
+        count += 1
+
+    return count
 # =========================================================
 # TEST CASES
 # =========================================================
