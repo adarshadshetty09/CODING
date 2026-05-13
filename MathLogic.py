@@ -1990,6 +1990,222 @@ def is_magic_number(n):
 
     return n == 1
 
+
+
+
+# =========================================================
+# ISBN NUMBER VALIDATION (ISBN-10)
+# =========================================================
+
+"""
+What is ISBN?
+
+ISBN stands for:
+
+International Standard Book Number
+
+It is used to uniquely identify books.
+
+ISBN-10 Format:
+- Contains exactly 10 digits
+
+Example:
+0201314525
+"""
+
+
+def is_valid_isbn(isbn):
+    """
+    Check whether ISBN-10 number is valid.
+
+    Logic:
+    - ISBN-10 uses weighted validation
+    - Multiply each digit by its position
+      (positions start from 1)
+    - Add all values
+    - If total is divisible by 11,
+      then ISBN is valid
+
+    Formula:
+    (1×d1 + 2×d2 + 3×d3 + ... + 10×d10) % 11 == 0
+
+    Example:
+    ISBN:
+    0201314525
+
+    Calculation:
+    (1×0) +
+    (2×2) +
+    (3×0) +
+    (4×1) +
+    (5×3) +
+    (6×1) +
+    (7×4) +
+    (8×5) +
+    (9×2) +
+    (10×5)
+
+    = 165
+
+    165 % 11 == 0
+
+    So ISBN is valid.
+
+    Validation Rules:
+    - Must contain exactly 10 digits
+    - All characters must be numeric
+
+    Time Complexity  : O(n)
+    Space Complexity : O(1)
+
+    where n = 10
+    """
+
+    # ISBN-10 must contain exactly 10 digits
+    if len(isbn) != 10:
+        return False
+
+    total = 0
+
+    # Enumerate provides:
+    # position and digit together
+    # start=1 because positions begin from 1
+    for position, digit in enumerate(isbn, start=1):
+
+        # Invalid if non-digit character exists
+        if not digit.isdigit():
+            return False
+
+        # Apply weighted sum formula
+        total += position * int(digit)
+
+    # ISBN valid if divisible by 11
+    return total % 11 == 0
+
+
+# =========================================================
+# PASCAL TRIANGLE
+# =========================================================
+
+"""
+What is Pascal Triangle?
+
+A triangular pattern where:
+
+Every number is the sum of the
+two numbers directly above it.
+
+
+                1
+              1   1
+            1   2   1
+          1   3   3   1
+        1   4   6   4   1
+"""
+
+
+"""
+Important Mathematical Relation
+
+Pascal Triangle values are combinations:
+
+            n!
+nCr = ----------------
+      r! × (n - r)!
+
+Example:
+
+1   3   3   1
+
+represents:
+
+3C0  3C1  3C2  3C3
+"""
+
+
+def pascal_triangle(rows):
+    """
+    Generate Pascal Triangle.
+
+    Logic:
+    - First and last element of every row is 1
+    - Middle elements are sum of:
+        previous_row[i] + previous_row[i + 1]
+
+    Example:
+
+    Row 0:
+    [1]
+
+    Row 1:
+    [1, 1]
+
+    Row 2:
+    [1, 2, 1]
+
+    Because:
+    1 + 1 = 2
+
+    Row 3:
+    [1, 3, 3, 1]
+
+    Because:
+    1 + 2 = 3
+    2 + 1 = 3
+
+    Step-by-step:
+
+    Previous Row:
+    [1, 2, 1]
+
+    New Row:
+    Start with:
+    [1]
+
+    Add middle values:
+    1+2 = 3
+    2+1 = 3
+
+    End with:
+    [1]
+
+    Final:
+    [1,3,3,1]
+
+    Time Complexity  : O(rows²)
+    Space Complexity : O(rows²)
+    """
+
+    triangle = []
+
+    # Generate rows one by one
+    for row in range(rows):
+
+        # Every row starts with 1
+        current_row = [1]
+
+        # Skip middle calculation for first row
+        if triangle:
+
+            # Get previous row
+            previous_row = triangle[-1]
+
+            # Generate middle elements
+            for i in range(len(previous_row) - 1):
+
+                current_row.append(
+                    previous_row[i] + previous_row[i + 1]
+                )
+
+            # Every row ends with 1
+            current_row.append(1)
+
+        # Add current row to triangle
+        triangle.append(current_row)
+
+    return triangle
+
+
 # =========================================================
 # TEST CASES
 # =========================================================
@@ -2262,3 +2478,16 @@ print("========== Magic Number Function ==========")
 print(is_magic_number(1729))
 print(is_magic_number(1234))
 print(is_magic_number(1235))
+
+print()
+print("========== ISBN ==========")
+print(is_valid_isbn("0201314525"))
+print(is_valid_isbn("1234567890"))
+
+
+print()
+print("========== Pascal Triangle ==========")
+
+result = pascal_triangle(5)
+for row in result:
+    print(row)
