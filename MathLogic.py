@@ -2206,6 +2206,150 @@ def pascal_triangle(rows):
     return triangle
 
 
+
+
+# =========================================================
+# POWER OF TWO
+# =========================================================
+
+"""
+A number is called Power of Two if:
+
+It can be written as:
+
+2^k
+
+where k ≥ 0
+
+Examples:
+1  = 2⁰
+2  = 2¹
+4  = 2²
+8  = 2³
+16 = 2⁴
+"""
+
+
+# =========================================================
+# POWER OF TWO - OPTIMIZED METHOD
+# =========================================================
+
+def is_power_of_two(n):
+    """
+    Check whether number is Power of Two
+    using Bit Manipulation.
+
+    Logic:
+    - Power of Two numbers contain
+      exactly one set bit (1) in binary.
+
+    Binary Representation:
+
+    1  -> 0001
+    2  -> 0010
+    4  -> 0100
+    8  -> 1000
+
+    Observation:
+    n & (n - 1) removes the last set bit.
+
+    For Power of Two:
+    Result becomes 0.
+
+    Example:
+    n = 8
+
+    Binary:
+    8     = 1000
+    8 - 1 = 0111
+
+    AND Operation:
+    1000 &
+    0111
+    ----
+    0000
+
+    Result = 0
+
+    So 8 is Power of Two
+
+    Example:
+    n = 10
+
+    Binary:
+    1010 &
+    1001
+    ----
+    1000
+
+    Result ≠ 0
+
+    So 10 is NOT Power of Two
+
+    Time Complexity  : O(1)
+    Space Complexity : O(1)
+    """
+
+    # Power of Two must be positive
+    if n <= 0:
+        return False
+
+    # Check single set bit condition
+    return (n & (n - 1)) == 0
+
+
+# =========================================================
+# POWER OF TWO - BRUTE FORCE METHOD
+# =========================================================
+
+def is_power_of_two_brute_force(n):
+    """
+    Check whether number is Power of Two
+    using repeated division.
+
+    Logic:
+    - Keep dividing number by 2
+    - If final result becomes 1,
+      then it is Power of Two
+
+    Example:
+    16
+
+    16 / 2 = 8
+     8 / 2 = 4
+     4 / 2 = 2
+     2 / 2 = 1
+
+    Final value = 1
+
+    So 16 is Power of Two
+
+    Example:
+    12
+
+    12 / 2 = 6
+     6 / 2 = 3
+
+    Final value ≠ 1
+
+    So 12 is NOT Power of Two
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
+    # Power of Two must be positive
+    if n <= 0:
+        return False
+
+    # Keep dividing by 2
+    while n % 2 == 0:
+
+        n //= 2
+
+    # Final value must become 1
+    return n == 1
+
 # =========================================================
 # TEST CASES
 # =========================================================
@@ -2491,3 +2635,17 @@ print("========== Pascal Triangle ==========")
 result = pascal_triangle(5)
 for row in result:
     print(row)
+
+
+print()
+print("========== Check Power of Two ==========")
+print(is_power_of_two(8))
+print(is_power_of_two(16))
+print(is_power_of_two(10))
+
+
+print()
+print("========== Simplest Brute Force Thinking==========")
+print(is_power_of_two_brute_force(8))
+print(is_power_of_two_brute_force(16))
+print(is_power_of_two_brute_force(10))
