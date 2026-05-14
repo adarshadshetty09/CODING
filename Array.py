@@ -634,7 +634,149 @@ def linear_search(arr, target):
     return -1
 
 # =========================================================
-# Move All Zeros to End
+# MOVE ALL ZEROS TO END
+# =========================================================
+
+"""
+Problem Statement:
+
+Given an array,
+move all zeros to the end
+while maintaining relative order
+of non-zero elements.
+
+Example:
+
+Input:
+[0, 1, 0, 3, 12]
+
+Output:
+[1, 3, 12, 0, 0]
+"""
+
+
+def move_zeros(arr):
+    """
+    Move all zeros to end of array.
+
+    Logic:
+    - Use two pointers:
+        1. i -> traverses array
+        2. j -> position for next non-zero element
+
+    - Whenever non-zero element is found:
+        swap arr[i] with arr[j]
+        increment j
+
+    Result:
+    - All non-zero elements move forward
+    - All zeros automatically shift to end
+
+    Example:
+    arr = [0, 1, 0, 3, 12]
+
+    Step 1:
+    i = 0
+    arr[i] = 0
+
+    Skip
+
+    Step 2:
+    i = 1
+    arr[i] = 1
+
+    Swap:
+    arr[1] ↔ arr[0]
+
+    Array:
+    [1, 0, 0, 3, 12]
+
+    j = 1
+
+    Step 3:
+    i = 2
+    arr[i] = 0
+
+    Skip
+
+    Step 4:
+    i = 3
+    arr[i] = 3
+
+    Swap:
+    arr[3] ↔ arr[1]
+
+    Array:
+    [1, 3, 0, 0, 12]
+
+    Step 5:
+    i = 4
+    arr[i] = 12
+
+    Swap:
+    arr[4] ↔ arr[2]
+
+    Final Array:
+    [1, 3, 12, 0, 0]
+
+    Why is this efficient?
+    - In-place modification
+    - No extra array used
+
+    Time Complexity  : O(n)
+    Space Complexity : O(1)
+
+    where n = number of elements
+    
+    
+    Full Pointer Movement Visualization
+    
+    
+    
+    Initial:
+[0, 1, 0, 3, 12]
+ i
+ j
+
+After finding 1:
+[1, 0, 0, 3, 12]
+    i
+    j
+
+After finding 3:
+[1, 3, 0, 0, 12]
+          i
+       j
+
+After finding 12:
+[1, 3, 12, 0, 0]
+               i
+           j
+    """
+    
+    
+
+
+    # Position for next non-zero element
+    j = 0
+
+    # Traverse array
+    for i in range(len(arr)):
+
+        # Process only non-zero elements
+        if arr[i] != 0:
+
+            # Swap current element with position j
+            arr[i], arr[j] = arr[j], arr[i]
+
+            # Move j forward
+            j += 1
+
+    return arr
+
+
+# =========================================================
+# 
 # =========================================================
 
 
@@ -704,3 +846,10 @@ print("======================= Linear Search in Array ================")
 arr = [10, 20, 30, 40, 50]
 target = 30
 print(linear_search(arr, target))
+
+
+
+print()
+print("======================= Move All Zeros to End ================")
+arr = [0, 1, 0, 3, 12]
+print(move_zeros(arr))
