@@ -2983,6 +2983,431 @@ def is_perfect_square(n):
 
 
 # =========================================================
+# COUNT TOTAL DIGITS FROM 1 TO N
+# =========================================================
+
+"""
+Problem Statement:
+
+Given a number N,
+count how many digits are used
+to write all numbers from 1 to N.
+
+Example:
+N = 13
+
+Numbers:
+1 2 3 4 5 6 7 8 9 10 11 12 13
+
+Digit Count:
+1-digit numbers  -> 9 digits
+2-digit numbers -> 8 digits
+
+Total = 17
+"""
+
+
+# =========================================================
+# BRUTE FORCE APPROACH
+# =========================================================
+
+def count_total_digits_bruteforce(n):
+    """
+    Count total digits from 1 to N
+    using brute-force approach.
+
+    Logic:
+    - Traverse every number from 1 to N
+    - Convert each number to string
+    - Count length of string
+    - Add lengths together
+
+    Example:
+    N = 5
+
+    Numbers:
+    1 → 1 digit
+    2 → 1 digit
+    3 → 1 digit
+    4 → 1 digit
+    5 → 1 digit
+
+    Total = 5
+
+    Example:
+    N = 13
+
+    1-digit numbers:
+    1 to 9  -> 9 digits
+
+    2-digit numbers:
+    10 to 13 -> 4 × 2 = 8 digits
+
+    Total:
+    9 + 8 = 17
+
+    Time Complexity  : O(n log n)
+    Space Complexity : O(log n)
+
+    Why O(n log n)?
+    - Each number conversion to string
+      takes O(log n) time
+    - Done for all numbers from 1 to N
+    """
+
+    total = 0
+
+    # Traverse numbers from 1 to N
+    for i in range(1, n + 1):
+
+        # Count digits using string conversion
+        total += len(str(i))
+
+    return total
+
+
+# =========================================================
+# COUNT TOTAL DIGITS FROM 1 TO N
+# =========================================================
+
+
+# =========================================================
+# OPTIMIZED APPROACH
+# =========================================================
+
+def count_total_digits(n):
+    """
+    Count total digits from 1 to N
+    using optimized mathematical approach.
+
+    Logic:
+    - Count digits group by group
+
+    Groups:
+    1-digit numbers:
+    1 to 9
+
+    2-digit numbers:
+    10 to 99
+
+    3-digit numbers:
+    100 to 999
+
+    and so on...
+
+    Formula:
+    total += number_of_values × digit_count
+
+    Example:
+    N = 13
+
+    Step 1:
+    1-digit numbers:
+    1 to 9
+
+    Count:
+    9 numbers
+
+    Digits:
+    9 × 1 = 9
+
+    Step 2:
+    Remaining numbers:
+    10 to 13
+
+    Count:
+    4 numbers
+
+    Digits:
+    4 × 2 = 8
+
+    Total:
+    9 + 8 = 17
+
+    Example:
+    N = 120
+
+    1-digit numbers:
+    9 × 1 = 9
+
+    2-digit numbers:
+    90 × 2 = 180
+
+    3-digit numbers:
+    21 × 3 = 63
+
+    Total:
+    9 + 180 + 63 = 252
+
+    Why is this optimized?
+    - Does NOT iterate through every number
+    - Processes numbers in digit groups
+
+    Time Complexity  : O(log n)
+    Space Complexity : O(1)
+    """
+
+    # Current digit length
+    digits = 1
+
+    # Starting number of current group
+    start = 1
+
+    total = 0
+
+    # Process complete digit groups
+    while start * 10 <= n:
+
+        # Count of numbers in current group
+        numbers = 9 * start
+
+        # Add total digits of current group
+        total += numbers * digits
+
+        # Move to next digit group
+        start *= 10
+
+        digits += 1
+
+    # Process remaining numbers
+    total += (n - start + 1) * digits
+
+    return total
+
+
+
+
+# =========================================================
+# FIND THE NTH DIGIT IN THE INFINITE NUMBER SEQUENCE
+# =========================================================
+
+"""
+Infinite Number Sequence:
+
+123456789101112131415...
+
+Problem:
+Find the digit present at
+the Nth position.
+
+Example:
+Sequence:
+123456789101112...
+
+Position:
+1 2 3 4 5 6 7 8 9 10 11 12 ...
+
+Digits:
+1 2 3 4 5 6 7 8 9  1  0  1 ...
+
+Example:
+N = 10
+
+10th digit = 1
+"""
+
+
+# =========================================================
+# SIMPLE / BRUTE FORCE APPROACH
+# =========================================================
+
+def find_nth_digit_simple(n):
+    """
+    Find Nth digit in infinite sequence
+    using brute-force approach.
+
+    Logic:
+    - Build sequence continuously
+    - Append numbers one by one
+    - Stop when sequence length
+      becomes at least N
+    - Return digit at index n - 1
+
+    Example:
+    N = 12
+
+    Sequence building:
+
+    "1"
+    "12"
+    "123"
+    "1234"
+    ...
+    "123456789101112"
+
+    12th digit:
+    "1"
+
+    Step-by-step:
+    Position:
+    1 2 3 4 5 6 7 8 9 10 11 12
+
+    Digits:
+    1 2 3 4 5 6 7 8 9  1  0  1
+
+    Result:
+    12th digit = 1
+
+    Why use n - 1?
+    - Python indexing starts from 0
+    - Position counting starts from 1
+
+    Time Complexity  : O(n)
+    Space Complexity : O(n)
+
+    Why expensive?
+    - Entire sequence is stored in memory
+    - Large N creates huge string
+    """
+
+    # Store generated sequence
+    sequence = ""
+
+    # Start generating numbers from 1
+    number = 1
+
+    # Continue until sequence length reaches n
+    while len(sequence) < n:
+
+        # Append current number
+        sequence += str(number)
+
+        number += 1
+
+    # Return nth digit
+    return sequence[n - 1] 
+
+
+# =========================================================
+# FIND THE NTH DIGIT IN THE INFINITE NUMBER SEQUENCE
+# =========================================================
+
+"""
+Infinite Number Sequence:
+
+123456789101112131415...
+
+Problem:
+Find the digit present at
+the Nth position.
+
+Example:
+Sequence:
+123456789101112...
+
+Position:
+1 2 3 4 5 6 7 8 9 10 11 12 ...
+
+Digits:
+1 2 3 4 5 6 7 8 9  1  0  1
+
+Example:
+N = 12
+
+12th digit = 1
+"""
+
+
+# =========================================================
+# IMPROVED APPROACH
+# =========================================================
+
+def find_nth_digit_better(n):
+    """
+    Find Nth digit in infinite sequence
+    using improved approach.
+
+    Logic:
+    - Traverse numbers one by one
+    - Count digits of current number
+    - Reduce n by digit count
+    - When n becomes smaller than
+      current digit count,
+      required digit exists in
+      current number
+
+    Example:
+    N = 12
+
+    Sequence:
+    123456789101112...
+
+    Step 1:
+    Number = 1
+    Digits = 1
+
+    n = 12 - 1 = 11
+
+    Step 2:
+    Number = 2
+    Digits = 1
+
+    n = 10
+
+    Continue...
+
+    After number 9:
+    n = 3
+
+    Number = 10
+    Digits = 2
+
+    n = 3 - 2 = 1
+
+    Number = 11
+    Digits = 2
+
+    Now:
+    n <= digits
+
+    Required digit exists inside 11
+
+    str(11)[1 - 1]
+    = str(11)[0]
+    = '1'
+
+    Answer = 1
+
+    Why use n - 1?
+    - Python indexing starts from 0
+    - Position counting starts from 1
+
+    Better than brute force because:
+    - Does NOT store full sequence
+    - Uses constant extra memory
+
+    Time Complexity  : O(n)
+    Space Complexity : O(1)
+    """
+
+    # Start generating numbers from 1
+    number = 1
+
+    while True:
+
+        # Count digits in current number
+        digits = len(str(number))
+
+        # Check whether nth digit
+        # exists inside current number
+        if n <= digits:
+
+            return str(number)[n - 1]
+
+        # Skip current number digits
+        n -= digits
+
+        number += 1
+
+
+
+
+
+
+
+
+
+# =========================================================
 # TEST CASES
 # =========================================================
 
@@ -3331,3 +3756,22 @@ print("========== Check if a Number is a Perfect Square ==========")
 print(is_perfect_square(25))
 print(is_perfect_square(64))
 print(is_perfect_square(34))
+
+
+print()
+print("========== Count Total Digits from 1 to N // Brute Force Approach ==========")
+print(count_total_digits_bruteforce(13))
+print(count_total_digits_bruteforce(100))
+
+
+
+print()
+print("========== Find the Nth Digit in the Infinite Number Sequence ==========")
+print(find_nth_digit_simple(13))
+print(find_nth_digit_simple(15))
+
+
+print()
+print("========== Find the Nth Digit in the Infinite Number Sequence / Better Version ==========")
+print(find_nth_digit_better(13))
+print(find_nth_digit_better(15))
