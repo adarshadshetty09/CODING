@@ -42,4 +42,4 @@ do
     previous_files="$current_files"
 
     sleep 5
-done
+done 
