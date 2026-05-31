@@ -20,7 +20,7 @@ echo "================================="
 healthy=0
 unhealthy=0
 
-kubectl get nodes --no-headers | while read node status roles age version
+minikube kubectl -- get nodes --no-headers | while read node status roles age version
 do
     if [ "$status" = "Ready" ]
     then
