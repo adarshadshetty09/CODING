@@ -18,7 +18,7 @@ COMMENT
 url="https://google.com"
 
 # Get HTTP status code
-status_code=$(curl -o /dev/null -s -w "%{http_code}" "$url")
+status_code=$(curl -L -o /dev/null -s -w "%{http_code}" "$url")
 
 # Check website status
 if [[ "$status_code" -ge 200 && "$status_code" -lt 400 ]]
