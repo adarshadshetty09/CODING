@@ -102,3 +102,72 @@ For missing element problems, think about these approaches:
 
 
 These cover most interview variations from companies like TCS, Cognizant, Accenture, EPAM, and product-based companies.
+
+
+The brute force approach checks every possible number to see which one is missing.
+
+Problem
+
+Find the missing number from 0 to n.
+
+Example:
+
+Input: [3, 0, 1]
+Output: 2
+
+Brute Force Algorithm
+
+1. Loop from 0 to n.
+
+
+2. For each number, search the entire array.
+
+
+3. If the number is not found, return it.
+
+
+
+Python Code
+
+```
+def missing_number(nums):
+    n = len(nums)
+
+    for i in range(n + 1):
+        found = False
+
+        for num in nums:
+            if num == i:
+                found = True
+                break
+
+        if not found:
+            return i
+
+nums = [3, 0, 1]
+print(missing_number(nums))
+```
+
+Dry Run
+
+For nums = [3, 0, 1]:
+
+Check 0 → Found ✅
+
+Check 1 → Found ✅
+
+Check 2 → Not Found ❌ → Return 2
+
+
+Complexity
+
+Time: O(n²) (nested loops)
+
+Space: O(1)
+
+
+This is the simplest approach to understand. After this, you can optimize it using:
+
+Better: Hash Set → O(n) time, O(n) space
+
+Best: Sum Formula or XOR → O(n) time, O(1) space.
