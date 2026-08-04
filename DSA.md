@@ -11,6 +11,8 @@ Output: 2
 
 Python (Sum method) – O(n) time, O(1) space
 
+
+```
 def missing_number(nums):
     n = len(nums)
     expected_sum = n * (n + 1) // 2
@@ -19,12 +21,13 @@ def missing_number(nums):
 
 nums = [3, 0, 1]
 print(missing_number(nums))
-
+```
 
 ---
 
 2. Using XOR (Best for interviews)
 
+```
 def missing_number(nums):
     xor = len(nums)
 
@@ -36,6 +39,7 @@ def missing_number(nums):
 
 nums = [3, 0, 1]
 print(missing_number(nums))
+```
 
 Why it works:
 
@@ -56,6 +60,7 @@ Example:
 Input: [4,3,2,7,8,2,3,1]
 Output: [5,6]
 
+```
 def find_disappeared_numbers(nums):
     s = set(nums)
     result = []
@@ -68,6 +73,7 @@ def find_disappeared_numbers(nums):
 
 nums = [4,3,2,7,8,2,3,1]
 print(find_disappeared_numbers(nums))
+```
 
 Time: O(n)
 Space: O(n)
