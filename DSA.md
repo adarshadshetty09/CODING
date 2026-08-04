@@ -246,3 +246,192 @@ Space: O(1)
 
 
 This is the optimal solution for the problem. 
+
+
+This is the Single Number problem (LeetCode 136).
+
+Problem
+
+Given an array where every element appears twice except one, find the element that appears only once.
+
+Example
+
+Input:  [4, 1, 2, 1, 2]
+Output: 4
+
+Optimal Approach (XOR)
+
+Key XOR Properties
+
+a ^ a = 0
+
+a ^ 0 = a
+
+XOR is commutative and associative.
+
+
+When you XOR all numbers together, the duplicate numbers cancel each other out, leaving only the unique number.
+
+Python Code
+
+```
+def single_number(nums):
+    result = 0
+
+    for num in nums:
+        result ^= num
+
+    return result
+
+
+nums = [4, 1, 2, 1, 2]
+print(single_number(nums))
+```
+
+Dry Run
+
+Array:
+
+[4, 1, 2, 1, 2]
+
+Number	Result (XOR)
+
+Start	0
+4	0 ^ 4 = 4
+1	4 ^ 1 = 5
+2	5 ^ 2 = 7
+1	7 ^ 1 = 6
+2	6 ^ 2 = 4
+
+
+Final Answer = 4
+
+Visualization
+
+4 ^ 1 ^ 2 ^ 1 ^ 2
+      ↓     ↓
+     1^1 = 0
+           ↓
+         2^2 = 0
+
+4 ^ 0 ^ 0 = 4
+
+Complexity
+
+Time: O(n) — one pass through the array.
+
+Space: O(1) — no extra data structures.
+
+
+This is the most efficient solution and is commonly asked in coding interviews.
+
+That's completely normal. These problems become much easier once you understand the pattern, not just the code.
+
+Let's take the Single Number problem slowly.
+
+Problem
+
+Array = [4, 1, 2, 1, 2]
+
+Every number appears twice except one.
+
+Find that one number.
+
+Method 1: Brute Force (Easy to Understand)
+
+Check each number and count how many times it appears.
+
+4 → appears 1 time ✅ Answer = 4
+
+1 → appears 2 times
+
+2 → appears 2 times
+
+
+Python:
+
+def single_number(nums):
+    for i in nums:
+        count = 0
+
+        for j in nums:
+            if i == j:
+                count += 1
+
+        if count == 1:
+            return i
+
+nums = [4, 1, 2, 1, 2]
+print(single_number(nums))
+
+Time Complexity: O(n²)
+
+
+---
+
+Method 2: XOR (Optimal)
+
+Now suppose we don't want to count.
+
+Remember these rules:
+
+5 ^ 5 = 0
+7 ^ 7 = 0
+0 ^ x = x
+
+Let's XOR all numbers:
+
+4 ^ 1 ^ 2 ^ 1 ^ 2
+
+Pair the duplicates:
+
+4 ^ (1 ^ 1) ^ (2 ^ 2)
+
+Since:
+
+1 ^ 1 = 0
+2 ^ 2 = 0
+
+Now:
+
+4 ^ 0 ^ 0 = 4
+
+So the answer is 4.
+
+
+---
+
+Why does XOR work?
+
+Imagine duplicates "cancel each other."
+
+1 comes twice  → disappears
+2 comes twice  → disappears
+4 comes once   → remains
+
+That's exactly what XOR does.
+
+
+---
+
+My suggestion for learning DSA
+
+Don't jump directly to the optimal solution.
+
+For every problem, follow this order:
+
+1. Understand the question.
+
+
+2. Solve it manually on paper.
+
+
+3. Write the brute-force solution.
+
+
+4. Learn the optimized solution and why it works.
+
+
+
+This is how most people build intuition.
+
