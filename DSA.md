@@ -171,3 +171,78 @@ This is the simplest approach to understand. After this, you can optimize it usi
 Better: Hash Set → O(n) time, O(n) space
 
 Best: Sum Formula or XOR → O(n) time, O(1) space.
+
+Problem: Maximum Consecutive Ones (LeetCode 485)
+
+Given a binary array (0s and 1s), return the maximum number of consecutive 1s. 
+
+Example
+
+Input:  [1, 1, 0, 1, 1, 1]
+Output: 3
+
+Idea
+
+Keep counting consecutive 1s.
+
+When you encounter 0, reset the count to 0.
+
+Keep track of the maximum count seen so far.
+
+
+Python Code
+
+```
+
+def findMaxConsecutiveOnes(nums):
+    count = 0
+    max_count = 0
+
+    for num in nums:
+        if num == 1:
+            count += 1
+            max_count = max(max_count, count)
+        else:
+            count = 0
+
+    return max_count
+
+
+nums = [1, 1, 0, 1, 1, 1]
+print(findMaxConsecutiveOnes(nums))
+```
+
+Dry Run
+
+Array:
+
+[1, 1, 0, 1, 1, 1]
+
+Element	count	max_count
+
+1	1	1
+1	2	2
+0	0	2
+1	1	2
+1	2	2
+1	3	3
+
+
+Answer = 3
+
+Visualization
+
+Index : 0 1 2 3 4 5
+Array : 1 1 0 1 1 1
+         ↑ ↑   ↑ ↑ ↑
+Count : 1 2 0 1 2 3
+Max   : 1 2 2 2 2 3
+
+Complexity
+
+Time: O(n) (single traversal)
+
+Space: O(1)
+
+
+This is the optimal solution for the problem. 
