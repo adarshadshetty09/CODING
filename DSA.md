@@ -435,3 +435,83 @@ For every problem, follow this order:
 
 This is how most people build intuition.
 
+
+Yes. This is a very common DSA problem:
+
+> Find the longest subarray whose sum is exactly K = 3.
+
+
+
+Let's learn it slowly with an example.
+
+Example
+
+arr = [1, 2, 1, 1, 1]
+k = 3
+
+Possible subarrays with sum 3:
+
+[1, 2]          → sum = 3 → length 2
+[2, 1]          → sum = 3 → length 2
+[1, 1, 1]       → sum = 3 → length 3  ✅
+
+So the answer is:
+
+3
+
+Brute-force approach — easiest to understand
+
+
+```
+def longest_subarray(arr, k):
+    max_length = 0
+
+    for i in range(len(arr)):
+        total = 0
+
+        for j in range(i, len(arr)):
+            total += arr[j]
+
+            if total == k:
+                length = j - i + 1
+                max_length = max(max_length, length)
+
+    return max_length
+
+
+arr = [1, 2, 1, 1, 1]
+k = 3
+
+print(longest_subarray(arr, k))
+
+```
+
+Output:
+
+3
+
+Visualize it
+
+For:
+
+[1, 2, 1, 1, 1]
+
+When i = 2:
+
+i
+       ↓
+[1, 2, 1, 1, 1]
+      └───────┘
+       1+1+1 = 3
+
+Length:
+
+j - i + 1
+4 - 2 + 1
+= 3
+
+So:
+
+Longest length = 3
+
+Important: This brute-force method is O(n²). After you understand this, the next step is learning the O(n) prefix-sum + hashmap approach, which is the important interview solution.
