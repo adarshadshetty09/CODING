@@ -464,3 +464,146 @@ DBA
 Annual Salary: 1200000
 
 Try it yourself and send me the code. I'll review it and then we'll move to self + instance variables in depth.
+
+
+Excellent work! 🔥 You implemented the challenge correctly.
+
+Your code now demonstrates:
+
+✅ Class
+
+✅ Objects
+
+✅ Constructor __init__
+
+✅ self
+
+✅ Instance variables
+
+✅ Methods
+
+✅ Passing data to methods
+
+✅ Doing calculations using object data
+
+
+One important improvement
+
+You wrote:
+
+def annual_salary(self):
+    print("Annual Salary: ", 12 * self.salary)
+
+This works perfectly if your goal is just to display the result.
+
+But in real Python programs, it's often better for a method that calculates something to return the value:
+
+def annual_salary(self):
+    return 12 * self.salary
+
+Then:
+
+print("Annual Salary:", employee1.annual_salary())
+print("Annual Salary:", employee2.annual_salary())
+
+Why is return better?
+
+Because you can reuse the result:
+
+annual = employee1.annual_salary()
+
+print(annual)
+
+or:
+
+if employee1.annual_salary() > 1000000:
+    print("High salary")
+
+That's an important programming habit.
+
+
+---
+
+Now let's understand self 🔥
+
+This is one of the most important concepts in Python OOP.
+
+When you write:
+
+employee1 = Employee("Adarsha", 100000, "DBA")
+
+Python creates an object.
+
+Inside the object:
+
+employee1
+ ├── name   = "Adarsha"
+ ├── salary = 100000
+ └── role   = "DBA"
+
+When you call:
+
+employee1.display()
+
+Python automatically passes employee1 as self.
+
+So conceptually:
+
+employee1.display()
+
+is similar to:
+
+Employee.display(employee1)
+
+That's why we write:
+
+def display(self):
+
+self means "this particular object."
+
+For example:
+
+employee1.salary
+
+means:
+
+> Give me the salary belonging to employee1.
+
+
+
+While:
+
+employee2.salary
+
+means:
+
+> Give me the salary belonging to employee2.
+
+
+
+Same class, different object data.
+
+
+---
+
+Your next challenge 🧠
+
+Add one more method:
+
+increase_salary(percent)
+
+For example:
+
+employee1.increase_salary(10)
+
+If salary is 100000, it should become:
+
+110000
+
+For Rahul:
+
+employee2.increase_salary(20)
+
+120000 → 144000
+
+Don't look for the solution yet. Try to calculate the percentage yourself. Send me your updated code. This will make self really click.
