@@ -343,3 +343,124 @@ display() method
 Then create 2 employees and display their details.
 
 Try writing it yourself first. Send me your code, and I'll review it line by line and then give you the next OOP concept.
+
+
+
+Excellent! 👍 Your OOP code is correct. You have understood the basic structure very well.
+
+One small improvement: you are storing salary as a string:
+
+employee1 = Employee("Adarsha", "100000", "DBA")
+
+Better:
+
+employee1 = Employee("Adarsha", 100000, "DBA")
+employee2 = Employee("Rahul", 120000, "SRE")
+
+That way, Python treats salary as a number, so later you can do calculations like:
+
+employee1.salary + 10000
+
+What you've learned from this code
+
+You have already used several OOP concepts:
+
+1. Class
+
+class Employee:
+
+Employee is your blueprint.
+
+2. Constructor
+
+def __init__(self, name, salary, role):
+
+This runs automatically when you create an object.
+
+3. self
+
+self.name = name
+
+self refers to the current object.
+
+So when you do:
+
+employee1 = Employee("Adarsha", 100000, "DBA")
+
+Python essentially creates:
+
+employee1
+ ├── name   → Adarsha
+ ├── salary → 100000
+ └── role   → DBA
+
+And:
+
+employee2 = Employee("Rahul", 120000, "SRE")
+
+creates a completely separate object:
+
+employee2
+ ├── name   → Rahul
+ ├── salary → 120000
+ └── role   → SRE
+
+4. Method
+
+def display(self):
+    print("I am Employee")
+
+display() is a method belonging to the Employee class.
+
+
+---
+
+One thing I want you to change
+
+Instead of printing every attribute separately:
+
+print(employee1.name)
+print(employee1.salary)
+print(employee1.role)
+
+make your display() method actually display the employee information:
+
+def display(self):
+    print("Name:", self.name)
+    print("Salary:", self.salary)
+    print("Role:", self.role)
+
+Then simply:
+
+employee1.display()
+employee2.display()
+
+This is a better OOP approach because the Employee object knows how to display its own information.
+
+Your next challenge 🚀
+
+Don't move to inheritance yet.
+
+Modify your class so it has:
+
+Employee
+    name
+    salary
+    role
+
+    display()
+    annual_salary()
+
+annual_salary() should return:
+
+monthly salary × 12
+
+For example:
+
+Adarsha
+100000
+DBA
+
+Annual Salary: 1200000
+
+Try it yourself and send me the code. I'll review it and then we'll move to self + instance variables in depth.
